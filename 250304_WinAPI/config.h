@@ -1,4 +1,4 @@
-// config.h
+ï»¿// config.h
 
 #pragma once
 #pragma comment(lib, "Winmm.lib")
@@ -18,10 +18,10 @@ using namespace std;
 #include "SceneManager.h"
 
 /*
-	ÄÄÆÄÀÏ·¯¿¡¼­ ÇØ´ç ÄÚµå¸¦ µÚ¿¡ Á¤ÀÇµÈ ÄÚµå·Î º¯°æÇÑ´Ù. 
+	ì»´íŒŒì¼ëŸ¬ì—ì„œ í•´ë‹¹ ì½”ë“œë¥¼ ë’¤ì— ì •ì˜ëœ ì½”ë“œë¡œ ë³€ê²½í•œë‹¤. 
 */
 #define WINSIZE_X	1080
-#define WINSIZE_Y	500
+#define WINSIZE_Y	720
 #define TILEMAPTOOL_X	1420
 #define TILEMAPTOOL_Y	700
 
@@ -35,20 +35,20 @@ typedef struct tagFPOINT
 } FPOINT;
 
 /*
-	extern Å°¿öµå : º¯¼ö³ª ÇÔ¼ö°¡ ´Ù¸¥ ÆÄÀÏ¿¡ Á¤ÀÇµÇ¾î ÀÖ´Ù ¶ó´Â
-	»ç½ÇÀ» ¾Ë¸®´Â Å°¿öµå.
+	extern í‚¤ì›Œë“œ : ë³€ìˆ˜ë‚˜ í•¨ìˆ˜ê°€ ë‹¤ë¥¸ íŒŒì¼ì— ì •ì˜ë˜ì–´ ìˆë‹¤ ë¼ëŠ”
+	ì‚¬ì‹¤ì„ ì•Œë¦¬ëŠ” í‚¤ì›Œë“œ.
 */
 extern HWND g_hWnd;
 extern HINSTANCE g_hInstance;
 extern POINT g_ptMouse;
 
-// »ùÇÃ Å¸ÀÏ Á¤º¸
+// ìƒ˜í”Œ íƒ€ì¼ ì •ë³´
 // 640 * 288
 #define SAMPLE_TILE_X	20
 #define SAMPLE_TILE_Y	9
 #define TILE_SIZE	32
 
-// ¸ŞÀÎ ±×¸®±â °ø°£ Á¤º¸
+// ë©”ì¸ ê·¸ë¦¬ê¸° ê³µê°„ ì •ë³´
 #define TILE_X	20
 #define TILE_Y	20
 

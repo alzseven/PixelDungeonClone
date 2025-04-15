@@ -130,7 +130,13 @@
     <ClCompile Include="AstarScene.cpp" />
     <ClCompile Include="BattleScene.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="IButton.cpp" />
+    <ClCompile Include="UIButton.cpp" />
+    <ClCompile Include="UIComposit.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="UIItemBox.cpp" />
+    <ClCompile Include="UIQuickSlot.cpp" />
+    <ClCompile Include="UISlider.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="KeyManager.cpp" />
@@ -138,17 +144,29 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="UIIcon.cpp" />
+    <ClCompile Include="UIStatus.cpp" />
     <ClCompile Include="TilemapTool.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TimerManager.cpp" />
+    <ClCompile Include="UILayout.cpp" />
+    <ClCompile Include="UIObject.cpp" />
+    <ClCompile Include="UIText.cpp" />
+    <ClCompile Include="UI_Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AstarScene.h" />
     <ClInclude Include="BattleScene.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="IButton.h" />
     <ClInclude Include="CommonFunction.h" />
+    <ClInclude Include="UIButton.h" />
+    <ClInclude Include="UIComposit.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="UIItemBox.h" />
+    <ClInclude Include="UIQuickSlot.h" />
+    <ClInclude Include="UISlider.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="KeyManager.h" />
@@ -156,9 +174,16 @@
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="UIIcon.h" />
+    <ClInclude Include="UIStatus.h" />
     <ClInclude Include="TilemapTool.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TimerManager.h" />
+    <ClInclude Include="UIImageLoader.h" />
+    <ClInclude Include="UILayout.h" />
+    <ClInclude Include="UIObject.h" />
+    <ClInclude Include="UIText.h" />
+    <ClInclude Include="UI_Test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

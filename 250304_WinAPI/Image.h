@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "config.h"
 
 class Image
@@ -6,26 +6,26 @@ class Image
 public:
 	enum IMAGE_LOAD_TYPE
 	{
-		Resource,	// ÇÁ·ÎÁ§Æ® ÀÚÃ¼¿¡ Æ÷ÇÔ ½ÃÅ³ ÀÌ¹ÌÁö
-		File,		// ¿ÜºÎ¿¡¼­ ·ÎµåÇÒ ÀÌ¹ÌÁö
-		Empty,		// ÀÚÃ¼ »ý»êÇÒ ÀÌ¹ÌÁö
+		Resource,	// í”„ë¡œì íŠ¸ ìžì²´ì— í¬í•¨ ì‹œí‚¬ ì´ë¯¸ì§€
+		File,		// ì™¸ë¶€ì—ì„œ ë¡œë“œí•  ì´ë¯¸ì§€
+		Empty,		// ìžì²´ ìƒì‚°í•  ì´ë¯¸ì§€
 		End
 	};
 
 	typedef struct tagImageInfo
 	{
-		DWORD resID;		// ¸®¼Ò½ºÀÇ °íÀ¯ ID
-		HDC hMemDC;			// ±×¸®±â¸¦ ÁÖ°üÇÏ´Â °´Ã¼ ÇÚµé
-		HBITMAP hBitmap;	// ÀÌ¹ÌÁö Á¤º¸
-		HBITMAP hOldBit;	// ±âÁ¸ ÀÌ¹ÌÁö Á¤º¸
+		DWORD resID;		// ë¦¬ì†ŒìŠ¤ì˜ ê³ ìœ  ID
+		HDC hMemDC;			// ê·¸ë¦¬ê¸°ë¥¼ ì£¼ê´€í•˜ëŠ” ê°ì²´ í•¸ë“¤
+		HBITMAP hBitmap;	// ì´ë¯¸ì§€ ì •ë³´
+		HBITMAP hOldBit;	// ê¸°ì¡´ ì´ë¯¸ì§€ ì •ë³´
 		HDC hTempDC;
 		HBITMAP hTempBit;
 		HBITMAP hOldTemp;
-		int width;			// ÀÌ¹ÌÁö °¡·Î Å©±â
-		int height;			// ÀÌ¹ÌÁö ¼¼·Î Å©±â
-		BYTE loadType;		// ·Îµå Å¸ÀÔ
+		int width;			// ì´ë¯¸ì§€ ê°€ë¡œ í¬ê¸°
+		int height;			// ì´ë¯¸ì§€ ì„¸ë¡œ í¬ê¸°
+		BYTE loadType;		// ë¡œë“œ íƒ€ìž…
 
-		// ¾Ö´Ï¸ÞÀÌ¼Ç °ü·Ã
+		// ì• ë‹ˆë©”ì´ì…˜ ê´€ë ¨
 		int maxFrameX;
 		int maxFrameY;
 		int frameWidth;
@@ -58,25 +58,25 @@ private:
 	COLORREF transColor;
 
 public:
-	// ºó ºñÆ®¸Ê ÀÌ¹ÌÁö¸¦ ¸¸µå´Â ÇÔ¼ö
+	// ë¹ˆ ë¹„íŠ¸ë§µ ì´ë¯¸ì§€ë¥¼ ë§Œë“œëŠ” í•¨ìˆ˜
 	HRESULT Init(int width, int height);
 
-	// ÆÄÀÏ·ÎºÎÅÍ ÀÌ¹ÌÁö¸¦ ·ÎµåÇÏ´Â ÇÔ¼ö
+	// íŒŒì¼ë¡œë¶€í„° ì´ë¯¸ì§€ë¥¼ ë¡œë“œí•˜ëŠ” í•¨ìˆ˜
 	HRESULT Init(const wchar_t* filePath, int width, int height, 
 		bool isTransparent = FALSE, COLORREF transColor = FALSE);
 
-	// ÆÄÀÏ·ÎºÎÅÍ ÀÌ¹ÌÁö¸¦ ·ÎµåÇÏ´Â ÇÔ¼ö
+	// íŒŒì¼ë¡œë¶€í„° ì´ë¯¸ì§€ë¥¼ ë¡œë“œí•˜ëŠ” í•¨ìˆ˜
 	HRESULT Init(const wchar_t* filePath, int width, int height,
 		int maxFrameX, int maxFrameY,
 		bool isTransparent = FALSE, COLORREF transColor = FALSE);
 
-	// È­¸é¿¡ Ãâ·Â
+	// í™”ë©´ì— ì¶œë ¥
 	void Render(HDC hdc, int destX = 0, int destY = 0);
 	void Render(HDC hdc, int destX, int destY, int frameIndex, bool isFlip = false);
 	void FrameRender(HDC hdc, int destX, int destY,
 		int frameX, int frameY, bool isFlip = false, bool isCenter = true);
 
-	// ¸Þ¸ð¸® ÇØÁ¦
+	// ë©”ëª¨ë¦¬ í•´ì œ
 	void Release();
 
 	inline HDC GetMemDC() {
@@ -93,5 +93,8 @@ public:
 	inline int GetHeight() { return imageInfo->height; }
 	inline int GetFrameWidth() { return imageInfo->frameWidth; }
 	inline int GetFrameHeight() { return imageInfo->frameHeight; }
+
+	inline void SetWidth(int w) { imageInfo->width = w; };
+	inline void SetHeight(int h) { imageInfo->height = h; };
 };
 

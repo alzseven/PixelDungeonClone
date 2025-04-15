@@ -1,8 +1,8 @@
-// CommonFunction.h
+ï»¿// CommonFunction.h
 /*
-	inline: ÄÄÆÄÀÏ·¯¿¡°Ô ÇÔ¼ö È£ÃâÀ» ÃÖÀûÈ­ ÇÏµµ·Ï ¿äÃ»ÇÏ´Â Å°¿öµå
-	ÀÏ¹İÀûÀÎ ÇÔ¼öµéÀº ÇÔ¼ö È£Ãâ ½Ã¿¡ ¸Å°³º¯¼ö¸¦ ½ºÅÃ¸Ş¸ğ¸® ÀúÀå, 
-	ÇÔ¼ö ½ÃÀÛÁÖ¼Ò¸¦ È£Ãâ, ¹İÈ¯ÁÖ¼Ò·Î ÀÌµ¿
+	inline: ì»´íŒŒì¼ëŸ¬ì—ê²Œ í•¨ìˆ˜ í˜¸ì¶œì„ ìµœì í™” í•˜ë„ë¡ ìš”ì²­í•˜ëŠ” í‚¤ì›Œë“œ
+	ì¼ë°˜ì ì¸ í•¨ìˆ˜ë“¤ì€ í•¨ìˆ˜ í˜¸ì¶œ ì‹œì— ë§¤ê°œë³€ìˆ˜ë¥¼ ìŠ¤íƒë©”ëª¨ë¦¬ ì €ì¥, 
+	í•¨ìˆ˜ ì‹œì‘ì£¼ì†Œë¥¼ í˜¸ì¶œ, ë°˜í™˜ì£¼ì†Œë¡œ ì´ë™
 	// main.cpp
 	int result = 3 + 6;
 
@@ -37,26 +37,26 @@ inline void RenderStar(HDC hdc, int posX, int posY)
 	LineTo(hdc, posX + 60, posY + 20);
 }
 
-// ÁÂ»ó´Ü ±âÁØ
+// ì¢Œìƒë‹¨ ê¸°ì¤€
 inline void RenderRect(HDC hdc, int x, int y, int width, int height)
 {
 	Rectangle(hdc, x, y, x + width, y + height);
 }
 
-// °¡¿îµ¥ ±âÁØ
+// ê°€ìš´ë° ê¸°ì¤€
 inline void RenderRectAtCenter(HDC hdc, int centerX, int centerY, int width, int height)
 {
 	Rectangle(hdc, centerX - (width / 2), centerY - (height / 2),
 		centerX + (width / 2), centerY + (height / 2));
 }
 
-// ÁÂ»ó´Ü ±âÁØ
+// ì¢Œìƒë‹¨ ê¸°ì¤€
 inline void RenderEllipse(HDC hdc, int x, int y, int width, int height)
 {
 	Ellipse(hdc, x, y, x + width, y + height);
 }
 
-// °¡¿îµ¥ ±âÁØ
+// ê°€ìš´ë° ê¸°ì¤€
 inline void RenderEllipseAtCenter(HDC hdc, int centerX, int centerY, int width, int height)
 {
 	Ellipse(hdc, centerX - (width / 2), centerY - (height / 2),
@@ -99,7 +99,7 @@ inline float GetAngle(FPOINT start, FPOINT end)
 	float x = end.x - start.x;
 	float y = end.y - start.y;
 
-	 return -atan2f(y, x);	// ¶óµğ¾È
+	 return -atan2f(y, x);	// ë¼ë””ì•ˆ
 }
 
 inline float GetDistance(FPOINT p1, FPOINT p2)
@@ -132,4 +132,15 @@ inline void SetClientRect(HWND hWnd, int width, int height)
 
 	SetWindowPos(hWnd, NULL, 0, 0, rc.right - rc.left, 
 		rc.bottom - rc.top, SWP_NOMOVE | SWP_NOZORDER);
+}
+
+inline RECT CaculateRelativeRECT(RECT aRect, RECT bRect)
+{
+	RECT caculateRect{ 0,0,0,0 };
+	caculateRect.left = aRect.left + bRect.left;
+	caculateRect.top = aRect.top + bRect.top;
+	caculateRect.right = aRect.left + bRect.right;
+	caculateRect.bottom = aRect.top + bRect.bottom;
+
+	return caculateRect;
 }

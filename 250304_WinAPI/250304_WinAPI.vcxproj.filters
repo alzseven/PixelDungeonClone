@@ -31,6 +31,18 @@
     <Filter Include="2D Framework\UI\Button">
       <UniqueIdentifier>{57de70b7-daba-4081-817d-3bfdbbe06bf9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\UI">
+      <UniqueIdentifier>{f836eeab-7105-42b2-bde3-cb937461ac3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\UI\Parts">
+      <UniqueIdentifier>{c6e2a6f9-7ca4-4d7c-8814-224cbe9eb3d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\UI\Sets">
+      <UniqueIdentifier>{d897708c-4bf5-4873-b67e-21e156bfe6c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\UI\Composits">
+      <UniqueIdentifier>{ebd745f8-6acf-45eb-aa53-f0f79c340076}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -74,6 +86,42 @@
     </ClCompile>
     <ClCompile Include="LoadingScene.cpp">
       <Filter>MainGame\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Test.cpp">
+      <Filter>MainGame\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="UIObject.cpp">
+      <Filter>MainGame\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIComposit.cpp">
+      <Filter>MainGame\UI\Composits</Filter>
+    </ClCompile>
+    <ClCompile Include="UISlider.cpp">
+      <Filter>MainGame\UI\Parts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIStatus.cpp">
+      <Filter>MainGame\UI\Composits</Filter>
+    </ClCompile>
+    <ClCompile Include="UIText.cpp">
+      <Filter>MainGame\UI\Parts</Filter>
+    </ClCompile>
+    <ClCompile Include="UILayout.cpp">
+      <Filter>MainGame\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIIcon.cpp">
+      <Filter>MainGame\UI\Parts</Filter>
+    </ClCompile>
+    <ClCompile Include="UIQuickSlot.cpp">
+      <Filter>MainGame\UI\Composits</Filter>
+    </ClCompile>
+    <ClCompile Include="UIItemBox.cpp">
+      <Filter>MainGame\UI\Sets</Filter>
+    </ClCompile>
+    <ClCompile Include="IButton.cpp">
+      <Filter>MainGame\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIButton.cpp">
+      <Filter>MainGame\UI\Parts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +172,45 @@
     </ClInclude>
     <ClInclude Include="LoadingScene.h">
       <Filter>MainGame\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Test.h">
+      <Filter>MainGame\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="UIImageLoader.h">
+      <Filter>MainGame\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIObject.h">
+      <Filter>MainGame\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIComposit.h">
+      <Filter>MainGame\UI\Composits</Filter>
+    </ClInclude>
+    <ClInclude Include="UISlider.h">
+      <Filter>MainGame\UI\Parts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIStatus.h">
+      <Filter>MainGame\UI\Composits</Filter>
+    </ClInclude>
+    <ClInclude Include="UILayout.h">
+      <Filter>MainGame\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIText.h">
+      <Filter>MainGame\UI\Parts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIIcon.h">
+      <Filter>MainGame\UI\Parts</Filter>
+    </ClInclude>
+    <ClInclude Include="UIQuickSlot.h">
+      <Filter>MainGame\UI\Composits</Filter>
+    </ClInclude>
+    <ClInclude Include="UIItemBox.h">
+      <Filter>MainGame\UI\Sets</Filter>
+    </ClInclude>
+    <ClInclude Include="IButton.h">
+      <Filter>MainGame\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIButton.h">
+      <Filter>MainGame\UI\Parts</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
