@@ -2,17 +2,14 @@
 #include "Image.h"
 #include "CommonFunction.h"
 #include "config.h"
-#include "UIStatus.h"
-#include "UIQuickSlot.h"
-#include "UIMenueBtns.h"
+#include "UIView.h"
 
-UI::UIStatus sta;
-UI::UIQuickSlot slot;
-UI::UIMenueBtns menus;
-
+UI::UIView uiView;
 
 HRESULT UI_TestScene::Init()
 {
+	SetClientRect(g_hWnd, WINSIZE_X, WINSIZE_Y);
+
 	backGround = new Image();
 	if (FAILED(backGround->Init(TEXT("Image/BackGround.bmp"), WINSIZE_X, WINSIZE_Y)))
 	{
@@ -21,9 +18,7 @@ HRESULT UI_TestScene::Init()
 		return E_FAIL;
 	}
 
-	sta.Init({ 0, 623, 335, 720 });
-	slot.Init({ 743,653, 337, 720 });
-	menus.Init({ 920, 0, 1080, 56 });
+	uiView.Init({ 0, 0, WINSIZE_X, WINSIZE_Y });
 
     return S_OK;
 }
@@ -40,15 +35,11 @@ void UI_TestScene::Release()
 
 void UI_TestScene::Update()
 {
-	sta.Update();
-	slot.Update();
-	menus.Update();
+	uiView.Update();
 }
 
 void UI_TestScene::Render(HDC hdc)
 {
 	backGround->Render(hdc);
-	sta.Render(hdc);
-	slot.Render(hdc);
-	menus.Render(hdc);
+	uiView.Render(hdc);
 }

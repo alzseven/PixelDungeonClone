@@ -150,7 +150,7 @@
     <ClCompile Include="TilemapTool.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TimerManager.cpp" />
-    <ClCompile Include="UILayout.cpp" />
+    <ClCompile Include="UIView.cpp" />
     <ClCompile Include="UIObject.cpp" />
     <ClCompile Include="UIText.cpp" />
     <ClCompile Include="UITextBox.cpp" />
@@ -183,7 +183,7 @@
     <ClInclude Include="TilemapTool.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TimerManager.h" />
-    <ClInclude Include="UILayout.h" />
+    <ClInclude Include="UIView.h" />
     <ClInclude Include="UIObject.h" />
     <ClInclude Include="UIText.h" />
     <ClInclude Include="UITextBox.h" />

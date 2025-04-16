@@ -105,7 +105,7 @@
     <ClCompile Include="UIText.cpp">
       <Filter>MainGame\UI\Parts</Filter>
     </ClCompile>
-    <ClCompile Include="UILayout.cpp">
+    <ClCompile Include="UIView.cpp">
       <Filter>MainGame\UI</Filter>
     </ClCompile>
     <ClCompile Include="UIIcon.cpp">
@@ -197,7 +197,7 @@
     <ClInclude Include="UIStatus.h">
       <Filter>MainGame\UI\Composits</Filter>
     </ClInclude>
-    <ClInclude Include="UILayout.h">
+    <ClInclude Include="UIView.h">
       <Filter>MainGame\UI</Filter>
     </ClInclude>
     <ClInclude Include="UIText.h">
