@@ -6,20 +6,6 @@
 
 using namespace UI;
 
-void UIMenueBtns::Init(RECT rect)
-{
-	UIObject::Init(rect);
-
-	ResourceInit();
-}
-
-void UIMenueBtns::Init(int dx, int dy, int width, int height)
-{
-	UIObject::Init(dx, dy, width, height);
-
-	ResourceInit();
-}
-
 void UIMenueBtns::Release()
 {
 	if (stairIcon)

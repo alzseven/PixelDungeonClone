@@ -12,14 +12,12 @@ namespace UI
 	public:
 		~UIMenueBtns() override = default;
 
-		void Init(RECT rect) override;
-		void Init(int dx, int dy, int width, int height) override;
 		void Release() override;
 		void Update() override;
 		void Render(HDC hdc) override;
 
 	protected:
-		void ResourceInit();
+		void ResourceInit() override;
 
 	public:
 		/* Child UI */

@@ -6,6 +6,7 @@ namespace UI
 	class UIStatus;
 	class UIQuickSlot;
 	class UIMenueBtns;
+	class UIDefeat;
 
 	class UIView : public UIObject
 	{
@@ -25,6 +26,7 @@ namespace UI
 		UIStatus* statToolbar;
 		UIQuickSlot* quickSlot;
 		UIMenueBtns* menueToolbar;
+		UIDefeat* defeatUI;
 	};
 
 }

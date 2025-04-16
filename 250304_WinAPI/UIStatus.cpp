@@ -9,20 +9,6 @@
 
 using namespace UI;
 
-void UIStatus::Init(RECT rect)
-{
-    UIObject::Init(rect);
-
-    ResourceInit();
-}
-
-void UIStatus::Init(int dx, int dy, int width, int height)
-{
-    UIObject::Init(dx, dy, width, height);
-
-    ResourceInit();
-}
-
 void UIStatus::Release()
 {
     if (icon)

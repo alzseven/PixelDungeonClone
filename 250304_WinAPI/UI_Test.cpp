@@ -3,6 +3,8 @@
 #include "CommonFunction.h"
 #include "config.h"
 #include "UIView.h"
+#include "UIMopHPBar.h"
+UI::UIMopHPBar mopHPBar;
 
 UI::UIView uiView;
 
@@ -19,6 +21,7 @@ HRESULT UI_TestScene::Init()
 	}
 
 	uiView.Init({ 0, 0, WINSIZE_X, WINSIZE_Y });
+	mopHPBar.Init(WINSIZE_X/2, WINSIZE_Y/2, 50, 10);
 
     return S_OK;
 }
@@ -36,10 +39,12 @@ void UI_TestScene::Release()
 void UI_TestScene::Update()
 {
 	uiView.Update();
+	mopHPBar.Update();
 }
 
 void UI_TestScene::Render(HDC hdc)
 {
-	backGround->Render(hdc);
+	//backGround->Render(hdc);
 	uiView.Render(hdc);
+	mopHPBar.Render(hdc);
 }

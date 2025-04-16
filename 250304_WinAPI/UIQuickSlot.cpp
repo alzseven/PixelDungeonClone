@@ -6,20 +6,6 @@
 
 using namespace UI;
 
-void UIQuickSlot::Init(RECT rect)
-{
-	UIObject::Init(rect);
-
-	ResourceInit();
-}
-
-void UIQuickSlot::Init(int dx, int dy, int width, int height)
-{
-	UIObject::Init(dx, dy, width, height);
-
-	ResourceInit();
-}
-
 void UIQuickSlot::Release()
 {
 	if (BackpackBtn)

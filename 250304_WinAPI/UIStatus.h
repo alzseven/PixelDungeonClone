@@ -14,8 +14,6 @@ namespace UI
 	public:
 		~UIStatus() override = default;
 
-		void Init(RECT rect) override;
-		void Init(int dx, int dy, int width, int height) override;
 		void Release() override;
 		void Update() override;
 		void Render(HDC hdc) override;
@@ -23,7 +21,7 @@ namespace UI
 		void SetText(const string& text);
 
 	protected:
-		void ResourceInit();
+		void ResourceInit() override;
 
 	public:
 		/* Child UI */
