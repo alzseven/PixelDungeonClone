@@ -2,9 +2,10 @@
 #include "ImageManager.h"
 #include "Image.h"
 #include "UIIcon.h"
-#include "UISlider.h"
-#include "UIText.h"
+#include "UITextSlider.h"
+#include "UITextBox.h"
 #include "CommonFunction.h"
+#include "string.h"
 
 using namespace UI;
 
@@ -44,11 +45,11 @@ void UIStatus::Release()
 		delete expBar;
 		expBar = nullptr;
 	}
-    if (levelText)
+    if (levelTextUI)
     {
-        levelText->Release();
-        delete levelText;
-        levelText = nullptr;
+        levelTextUI->Release();
+        delete levelTextUI;
+        levelTextUI = nullptr;
     }
 }
 
@@ -62,10 +63,6 @@ void UIStatus::Update()
 	if (expBar)
 	{
 		expBar->Update();
-	}
-	if (levelText)
-	{
-		levelText->Update();
 	}
 }
 
@@ -83,28 +80,49 @@ void UIStatus::Render(HDC hdc)
 	{
 		expBar->Render(hdc);
 	}
-	if (levelText)
+	if (levelTextUI)
 	{
-		levelText->Render(hdc);
+		levelTextUI->Render(hdc);
 	}
 }
 
-void UI::UIStatus::ResourceInit()
+void UI::UIStatus::SetText(const string& text)
 {
-    auto imageManager = ImageManager::GetInstance();
+	if (levelTextUI)
+	{
+		levelTextUI->SetText(text);
+	}
+}
 
-    icon = new UIIcon();
-    icon->Init(CaculateRelativeRECT(rectTransform, { 0, 0, 67, 68 }),
-        ImageData{ "status_character_ico", L"assets/sprites/TempCh.bmp", true, RGB(255, 255, 255) },
-        ImageData{ "status_character_bg", L"assets/sprite/TempChBg.bmp", true, RGB(255, 255, 255) });
-	hpBar = new UISlider();
-	hpBar->Init(CaculateRelativeRECT(rectTransform, { 67, 34, 355, 68 }),
-		ImageData{ "status_hp_bar", L"assets/interfaces/HPBar.bmp", true, RGB(255, 255, 255) },
-		ImageData{ "status_hp_bg", L"assets/interfaces/HPBarBg.bmp", true, RGB(255, 255, 255) });
-	expBar = new UISlider();
-	expBar->Init(CaculateRelativeRECT(rectTransform, { 67, 68, 355, 97 }),
-		ImageData{ "status_exp_bar", L"assets/interfaces/ExpBar.bmp", true, RGB(255, 255, 255) },
-		ImageData{ "status_exp_bg", L"assets/interfaces/HPBarBg.bmp", true, RGB(255, 255, 255) });
+void UIStatus::ResourceInit()  
+{  
+   auto imageManager = ImageManager::GetInstance();  
 
- //   UIText* levelText;
+   icon = new UIIcon();  
+   icon->Init(CaculateRelativeRECT(rectTransform, { 0, 0, 67, 68 }),  
+       ImageData{ "status_character_ico", L"assets/sprites/TempCh.bmp", true, RGB(255, 255, 255) },  
+       ImageData{ "status_character_bg", L"assets/sprites/TempChBg.bmp", true, RGB(255, 255, 255) }  
+       , { 10, 10 , 0, 0 });  
+   hpBar = new UITextSlider();  
+   hpBar->Init(CaculateRelativeRECT(rectTransform, { 67, 34, 355, 68 }),  
+       ImageData{ "status_hp_bar", L"assets/interfaces/HPBar.bmp", true, RGB(255, 255, 255) },  
+       ImageData{ "status_hp_bg", L"assets/interfaces/BarBg.bmp", true, RGB(255, 255, 255) }, 
+       ImageData{"",L"",0,0},
+       {5, 9, 10, 5});
+   hpBar->SetMaxHP(100);
+   hpBar->SetHP(70);
+
+   expBar = new UITextSlider();  
+   expBar->Init(CaculateRelativeRECT(rectTransform, { 67, 68, 355, 97 }),  
+       ImageData{ "status_exp_bar", L"assets/interfaces/ExpBar.bmp", true, RGB(255, 255, 255) },  
+       ImageData{ "status_exp_bg", L"assets/interfaces/BarBg.bmp", true, RGB(255, 255, 255) },
+       ImageData{ "",L"",0,0 },
+       { 5, 7, 10, 5 });
+   expBar->SetMaxHP(30);
+   expBar->SetHP(13);
+
+   levelTextUI = new UITextBox();  
+   levelTextUI->Init(CaculateRelativeRECT(rectTransform, { 0, 68, 67, 97 }), "lv 1.",
+       ImageData{ "status_level", L"assets/interfaces/level_box.bmp", true, RGB(255,255,255) }
+   , { 0, 5, 0, 0 });
 }

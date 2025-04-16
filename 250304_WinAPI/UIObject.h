@@ -25,6 +25,9 @@ namespace UI
 
 		void SetPos(int dx, int dy);
 		void SetScale(int width, int height);
+		void SetRect(RECT rect);
+		void SetRect(int dx, int dy, int width, int height);
+
 
 	protected:
 		void UpdateRectTransform();

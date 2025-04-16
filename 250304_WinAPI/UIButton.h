@@ -18,9 +18,13 @@ namespace UI
 		void Update() override;
 		void Render(HDC hdc) override;
 
+		void SetText(string& txt);
+
 	protected:
-		//UIText* text;
-		//UIText* text;
+		void ResourceInit(ImageData imgData, ImageData bgData = { "", L"", 0, 0 }, RECT margin = { 0,0,0,0 }) override;
+
+	protected:
+		UIText* textUI;
 		COLORREF bgColorRGB{ RGB(0, 0, 0) };
 	};
 

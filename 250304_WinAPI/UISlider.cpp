@@ -4,19 +4,19 @@
 using namespace UI;
 
 void UISlider::Init(RECT rect,
-    ImageData imgData, ImageData bgData, ImageData handleData )
+    ImageData imgData, ImageData bgData, ImageData handleData, RECT margin)
 {
     this->UIObject::Init(rect);
 
-    ResourceInit(imgData, bgData, handleData);
+    ResourceInit(imgData, bgData, handleData, margin);
 }
 
 void UISlider::Init(int dx, int dy, int width, int height,
-    ImageData imgData, ImageData bgData , ImageData handleData )
+    ImageData imgData, ImageData bgData , ImageData handleData, RECT margin)
 {
     this->UIObject::Init(dx, dy, width, height);
 
-    ResourceInit(imgData, bgData, handleData);
+    ResourceInit(imgData, bgData, handleData, margin);
 }
 
 void UISlider::Release()
@@ -71,7 +71,24 @@ void UISlider::Render(HDC hdc)
     }
 }
 
-void UISlider::ResourceInit(ImageData fillData, ImageData bgData, ImageData handleData)
+void UISlider::SetMaxHP(float hp)
+{
+    maxHP = hp;
+    fillValue = max(0.0f, min((goalHP / maxHP), 1.0f));
+}
+
+void UISlider::SetHP(float hp)
+{
+    goalHP = hp;
+    fillValue = max(0.0f, min((goalHP / maxHP), 1.0f));
+
+    if (fill)
+    {
+        fill->SetWidth(fill->GetWidth() * fillValue);
+    }
+}
+
+void UISlider::ResourceInit(ImageData fillData, ImageData bgData, ImageData handleData, RECT margin)
 {
     fill = ImageManager::GetInstance()->AddImage(fillData.keyName, fillData.filePath, width, height, fillData.isTransparent, fillData.transColor);
 
@@ -85,8 +102,10 @@ void UISlider::ResourceInit(ImageData fillData, ImageData bgData, ImageData hand
         handleImg = ImageManager::GetInstance()->AddImage(handleData.keyName, handleData.filePath, handleWidth, handleHeight, handleData.isTransparent, handleData.transColor);
     }
 
-	fillRectTransfrom = { rectTransform.left, rectTransform.top,
-		rectTransform.left + (int)(width * fillValue), rectTransform.bottom };
+	fillRectTransfrom = { rectTransform.left + margin.left, rectTransform.top + margin.top,
+		rectTransform.left + (int)(width * fillValue), rectTransform.bottom};
+    fill->SetWidth(width - margin.left - margin.right);
+    fill->SetHeight(height - margin.top - margin.bottom);
 }
 
 float UISlider::SmoothDamp(float current, float target, float& velocity, float smoothTime, float deltaTime)

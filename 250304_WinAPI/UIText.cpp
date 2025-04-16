@@ -1,20 +1,22 @@
 ﻿#include "UIText.h"
 
-void UI::UIText::Init(RECT rect, const string& text, COLORREF textColor)
+using namespace UI;
+
+void UIText::Init(RECT rect, const string& text, COLORREF textColor)
 {
 	UIObject::Init(rect);
 	this->text = text;
 	this->textColor = textColor;
 }
 
-void UI::UIText::Init(int dx, int dy, int width, int height, const string& text, COLORREF textColor)
+void UIText::Init(int dx, int dy, int width, int height, const string& text, COLORREF textColor)
 {
 	UIObject::Init(dx, dy, width, height);
 	this->text = text;
 	this->textColor = textColor;
 }
 
-void UI::UIText::Release()
+void UIText::Release()
 {
 	if (text != "")
 	{
@@ -26,13 +28,13 @@ void UI::UIText::Release()
 	}
 }
 
-void UI::UIText::Update()
+void UIText::Update()
 {
 }
 
-void UI::UIText::Render(HDC hdc)
+void UIText::Render(HDC hdc)
 {
 	SetBkMode(hdc, TRANSPARENT);
 	SetTextAlign(hdc, TA_CENTER | TA_BASELINE);
-	TextOutA(hdc, rectTransform.left + 5, rectTransform.top + 5, text.c_str(), text.length());
+	TextOutA(hdc, centerX, centerY, text.c_str(), text.length());
 }

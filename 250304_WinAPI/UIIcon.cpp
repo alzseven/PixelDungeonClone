@@ -37,11 +37,13 @@ void UIIcon::Update()
 
 void UIIcon::Render(HDC hdc)
 {
-	Rectangle(hdc, rectTransform.left, rectTransform.top, rectTransform.right, rectTransform.bottom);
-	icon->Render(hdc, rectTransform.left + margin.left, rectTransform.top + margin.top);
 	if (bg)
 	{
 		bg->Render(hdc, rectTransform.left, rectTransform.top);
+	}
+	if (icon)
+	{
+		icon->Render(hdc, rectTransform.left + margin.left, rectTransform.top + margin.top);
 	}
 }
 
@@ -49,12 +51,10 @@ void UIIcon::ResourceInit( ImageData imgData, ImageData bgData, RECT margin )
 {
 	this->margin = margin;
 
-	icon = ImageManager::GetInstance()->AddImage(imgData.keyName, imgData.filePath, 
-		width-margin.left, height-margin.top, imgData.isTransparent, imgData.transColor);
-	if (icon == nullptr)
+	if (imgData.keyName != "")
 	{
-		wstring failedFilePath = imgData.filePath;
-		OutputDebugString((L"Icon Load Failed : ( " + failedFilePath + L" )\n").c_str());
+		icon = ImageManager::GetInstance()->AddImage(imgData.keyName, imgData.filePath,
+			width - margin.left * 2, height - margin.top * 2, imgData.isTransparent, imgData.transColor);
 	}
 
 	if (bgData.keyName != "")

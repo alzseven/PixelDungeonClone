@@ -123,6 +123,15 @@
     <ClCompile Include="UIButton.cpp">
       <Filter>MainGame\UI\Parts</Filter>
     </ClCompile>
+    <ClCompile Include="UITextBox.cpp">
+      <Filter>MainGame\UI\Sets</Filter>
+    </ClCompile>
+    <ClCompile Include="UIMenueBtns.cpp">
+      <Filter>MainGame\UI\Composits</Filter>
+    </ClCompile>
+    <ClCompile Include="UITextSlider.cpp">
+      <Filter>MainGame\UI\Sets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">
@@ -176,9 +185,6 @@
     <ClInclude Include="UI_Test.h">
       <Filter>MainGame\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="UIImageLoader.h">
-      <Filter>MainGame\UI</Filter>
-    </ClInclude>
     <ClInclude Include="UIObject.h">
       <Filter>MainGame\UI</Filter>
     </ClInclude>
@@ -211,6 +217,15 @@
     </ClInclude>
     <ClInclude Include="UIButton.h">
       <Filter>MainGame\UI\Parts</Filter>
+    </ClInclude>
+    <ClInclude Include="UITextBox.h">
+      <Filter>MainGame\UI\Sets</Filter>
+    </ClInclude>
+    <ClInclude Include="UIMenueBtns.h">
+      <Filter>MainGame\UI\Composits</Filter>
+    </ClInclude>
+    <ClInclude Include="UITextSlider.h">
+      <Filter>MainGame\UI\Sets</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

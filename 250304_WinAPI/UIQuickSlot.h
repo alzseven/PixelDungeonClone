@@ -24,7 +24,7 @@ namespace UI
 		UIButton* BackpackBtn;
 		UIButton* SlepBtn;
 		UIButton* SearchBtn;
-		vector<UIItemBox> ItemBox;
+		vector<UIItemBox*> ItemBox;
 	};
 
 }

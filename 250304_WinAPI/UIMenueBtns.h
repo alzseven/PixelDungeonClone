@@ -1,18 +1,16 @@
 ﻿#pragma once
 #include "UIComposit.h"
 
-class Image;
-
 namespace UI
 {
 	class UIIcon;
-	class UITextBox;
-	class UITextSlider;
+	class UIText;
+	class UIButton;
 
-	class UIStatus : public UIComposit
+	class UIMenueBtns : public UIComposit
 	{
 	public:
-		~UIStatus() override = default;
+		~UIMenueBtns() override = default;
 
 		void Init(RECT rect) override;
 		void Init(int dx, int dy, int width, int height) override;
@@ -20,18 +18,15 @@ namespace UI
 		void Update() override;
 		void Render(HDC hdc) override;
 
-		void SetText(const string& text);
-
 	protected:
 		void ResourceInit();
 
 	public:
 		/* Child UI */
-		UIIcon* icon;
-		UITextBox* levelTextUI;
-		UITextSlider* hpBar;
-		UITextSlider* expBar;
-
+		UIIcon* stairIcon;
+		UIText* stairTextUI;
+		UIButton* guideBookBtn;
+		UIButton* menuBtn;
 	};
 
 }

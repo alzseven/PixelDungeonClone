@@ -14,15 +14,21 @@ namespace UI
         ~UISlider() override = default;
 
         void Init(RECT rect,
-            ImageData imgSData, ImageData bgData = { "", L"", 0, 0 }, ImageData handleData = { "", L"", 0, 0 });
+            ImageData imgSData, ImageData bgData = { "", L"", 0, 0 }, ImageData handleData = { "", L"", 0, 0 },
+            RECT margin = {0,0,0,0});
         void Init(int dx,int dy, int width, int height, 
-            ImageData imgData, ImageData bgData = { "", L"", 0, 0 }, ImageData handleData = { "", L"", 0, 0 });
+            ImageData imgData, ImageData bgData = { "", L"", 0, 0 }, ImageData handleData = { "", L"", 0, 0 },
+            RECT margin = { 0,0,0,0 });
         void Release() override;
         void Update() override;
         void Render(HDC hdc) override;
 
+        virtual void SetMaxHP(float hp);
+        virtual void SetHP(float hp);
+
     protected:
-        void ResourceInit(ImageData imgData, ImageData bgData = { "", L"", 0, 0 }, ImageData handleData = { "", L"", 0, 0 });
+        virtual void ResourceInit(ImageData imgData, ImageData bgData = { "", L"", 0, 0 }, ImageData handleData = { "", L"", 0, 0 },
+            RECT margin = { 0,0,0,0 });
         float SmoothDamp(float current, float target, float& velocity, float smoothTime, float deltaTime);
 
     protected:

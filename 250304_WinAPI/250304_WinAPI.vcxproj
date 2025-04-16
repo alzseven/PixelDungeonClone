@@ -135,6 +135,7 @@
     <ClCompile Include="UIComposit.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="UIItemBox.cpp" />
+    <ClCompile Include="UIMenueBtns.cpp" />
     <ClCompile Include="UIQuickSlot.cpp" />
     <ClCompile Include="UISlider.cpp" />
     <ClCompile Include="Image.cpp" />
@@ -152,6 +153,8 @@
     <ClCompile Include="UILayout.cpp" />
     <ClCompile Include="UIObject.cpp" />
     <ClCompile Include="UIText.cpp" />
+    <ClCompile Include="UITextBox.cpp" />
+    <ClCompile Include="UITextSlider.cpp" />
     <ClCompile Include="UI_Test.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +168,7 @@
     <ClInclude Include="config.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="UIItemBox.h" />
+    <ClInclude Include="UIMenueBtns.h" />
     <ClInclude Include="UIQuickSlot.h" />
     <ClInclude Include="UISlider.h" />
     <ClInclude Include="Image.h" />
@@ -179,10 +183,11 @@
     <ClInclude Include="TilemapTool.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TimerManager.h" />
-    <ClInclude Include="UIImageLoader.h" />
     <ClInclude Include="UILayout.h" />
     <ClInclude Include="UIObject.h" />
     <ClInclude Include="UIText.h" />
+    <ClInclude Include="UITextBox.h" />
+    <ClInclude Include="UITextSlider.h" />
     <ClInclude Include="UI_Test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

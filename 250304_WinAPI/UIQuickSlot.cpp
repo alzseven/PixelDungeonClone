@@ -1,24 +1,26 @@
 ﻿#include "UIQuickSlot.h"
 #include "UIButton.h"
+#include "UIItemBox.h"
+#include "CommonFunction.h"
 
 
 using namespace UI;
 
-void UI::UIQuickSlot::Init(RECT rect)
+void UIQuickSlot::Init(RECT rect)
 {
 	UIObject::Init(rect);
 
 	ResourceInit();
 }
 
-void UI::UIQuickSlot::Init(int dx, int dy, int width, int height)
+void UIQuickSlot::Init(int dx, int dy, int width, int height)
 {
 	UIObject::Init(dx, dy, width, height);
 
 	ResourceInit();
 }
 
-void UI::UIQuickSlot::Release()
+void UIQuickSlot::Release()
 {
 	if (BackpackBtn)
 	{
@@ -40,24 +42,47 @@ void UI::UIQuickSlot::Release()
 	}
 }
 
-void UI::UIQuickSlot::Update()
+void UIQuickSlot::Update()
 {
 }
 
-void UI::UIQuickSlot::Render(HDC hdc)
+void UIQuickSlot::Render(HDC hdc)
 {
-	BackpackBtn->Render(hdc);
-	//SlepBtn->Render(hdc);
-	//SearchBtn->Render(hdc);
-	//RenderRectAtCenter(hdc, centerX, centerY, width, height);
-	//RenderStar(hdc, centerX, centerY);
-	//RenderEllipseAtCenter(hdc, centerX, centerY, width, height);
+	if (BackpackBtn)
+	{
+		BackpackBtn->Render(hdc);
+	}
+	if (SlepBtn)
+	{
+		SlepBtn->Render(hdc);
+	}
+	if (SearchBtn)
+	{
+		SearchBtn->Render(hdc);
+	}
+	for (int i = 0; i < ItemBox.size(); ++i)
+	{
+		ItemBox[i]->Render(hdc);
+	}
 }
 
-void UI::UIQuickSlot::ResourceInit()
+void UIQuickSlot::ResourceInit()
 {
+	for (int i = 0; i < 3; ++i)
+	{
+		auto itemBox = new UIItemBox();
+		itemBox->Init(CaculateRelativeRECT(rectTransform, { 55 * i, 8, 55 * (i + 1), 67 }),
+			ImageData{ "item_quick", L"assets/interfaces/item_quick.bmp", true, RGB(255, 255, 255) });
+
+		ItemBox.push_back(itemBox);
+	}
+	SearchBtn = new UIButton();
+	SearchBtn->Init(CaculateRelativeRECT(rectTransform, { 165, 0, 218, 67 }),
+		ImageData{ "search_quick", L"assets/interfaces/search_quick.bmp", true, RGB(255, 255, 255) });
+	SlepBtn = new UIButton();
+	SlepBtn->Init(CaculateRelativeRECT(rectTransform, { 218, 0, 271, 67 }),
+		ImageData{ "sleep_quick", L"assets/interfaces/sleep_quick.bmp", true, RGB(255, 255, 255) });
 	BackpackBtn = new UIButton();
-	BackpackBtn->Init({ 0, 0, 100, 100 }, {});
-	BackpackBtn->SetPos(centerX - (width / 2), centerY - (height / 2));
-	BackpackBtn->SetScale(100, 100);
+	BackpackBtn->Init(CaculateRelativeRECT(rectTransform, {271, 0, 337, 67}), 
+		ImageData{ "inven_quick", L"assets/interfaces/inven_quick.bmp", true, RGB(255, 255, 255) });
 }

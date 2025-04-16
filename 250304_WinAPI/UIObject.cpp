@@ -39,6 +39,24 @@ void UIObject::SetScale(int width, int height)
 	UpdateRectTransform();
 }
 
+void UIObject::SetRect(RECT rect)
+{
+	this->rectTransform = rect;
+	this->width = rect.right - rect.left;
+	this->height = rect.bottom - rect.top;
+	this->centerX = (rect.left + rect.right) / 2;
+	this->centerY = (rect.top + rect.bottom) / 2;
+}
+
+void UIObject::SetRect(int dx, int dy, int width, int height)
+{
+	this->centerX = dx;
+	this->centerY = dy;
+	this->width = width;
+	this->height = height;
+	UpdateRectTransform();
+}
+
 void UIObject::UpdateRectTransform()
 {
 	int halfWidth = this->width / 2;
