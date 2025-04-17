@@ -129,7 +129,7 @@
     <ClCompile Include="IButton.cpp">
       <Filter>2D Framework\UI</Filter>
     </ClCompile>
-    <ClCompile Include="UIView.cpp">
+    <ClCompile Include="UIManager.cpp">
       <Filter>2D Framework\UI</Filter>
     </ClCompile>
     <ClCompile Include="UIObject.cpp">
@@ -143,6 +143,9 @@
     </ClCompile>
     <ClCompile Include="UIMopHPBar.cpp">
       <Filter>2D Framework\UI\Composits</Filter>
+    </ClCompile>
+    <ClCompile Include="UIPanel.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,9 +212,6 @@
     <ClInclude Include="UIText.h">
       <Filter>2D Framework\UI\Parts</Filter>
     </ClInclude>
-    <ClInclude Include="UIIcon.h">
-      <Filter>2D Framework\UI\Parts</Filter>
-    </ClInclude>
     <ClInclude Include="UIQuickSlot.h">
       <Filter>2D Framework\UI\Composits</Filter>
     </ClInclude>
@@ -236,7 +236,7 @@
     <ClInclude Include="IButton.h">
       <Filter>2D Framework\UI</Filter>
     </ClInclude>
-    <ClInclude Include="UIView.h">
+    <ClInclude Include="UIManager.h">
       <Filter>2D Framework\UI</Filter>
     </ClInclude>
     <ClInclude Include="FieldItem.h">
@@ -250,6 +250,12 @@
     </ClInclude>
     <ClInclude Include="UIMopHPBar.h">
       <Filter>2D Framework\UI\Composits</Filter>
+    </ClInclude>
+    <ClInclude Include="UIPanel.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="UIIcon.h">
+      <Filter>2D Framework\UI\Parts</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

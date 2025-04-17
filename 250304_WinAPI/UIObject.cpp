@@ -4,8 +4,10 @@ using namespace UI;
 
 
 
-void UIObject::Init(RECT rect)
+void UIObject::Init(UIObject* parent, RECT rect)
 {
+	SetParent(parent);
+
 	centerX = (rect.right + rect.left) / 2;
 	centerY = (rect.bottom + rect.top) / 2;
 	width = rect.right - rect.left;
@@ -13,14 +15,21 @@ void UIObject::Init(RECT rect)
 	rectTransform = rect;
 }
 
-void UIObject::Init(int dx, int dy, int width, int height)
+void UIObject::Init(UIObject* parent, int dx, int dy, int width, int height)
 {
+	SetParent(parent);
+
 	this->centerX = dx;
 	this->centerY = dy;
 	this->width = width;
 	this->height = height;
 
 	UpdateRectTransform();
+}
+
+void UI::UIObject::SetParent(UIObject* parent)
+{
+	this->parent = parent;
 }
 
 void UIObject::SetPos(int dx, int dy)

@@ -3,14 +3,14 @@
 
 using namespace UI;
 
-void UIButton::Init(RECT rect, ImageData imgData, ImageData bgData, RECT margin)
+void UIButton::Init(UIObject* parent, RECT rect, ImageData imgData, ImageData bgData, RECT margin)
 {
-	UIIcon::Init(rect, imgData, bgData, margin);
+	UIIcon::Init(parent, rect, imgData, bgData, margin);
 }
 
-void UIButton::Init(int dx, int dy, int width, int height, ImageData imgData, ImageData bgData, RECT margin)
+void UIButton::Init(UIObject* parent, int dx, int dy, int width, int height, ImageData imgData, ImageData bgData, RECT margin)
 {
-	UIIcon::Init(dx, dy, width, height, imgData, bgData, margin);
+	UIIcon::Init(parent, dx, dy, width, height, imgData, bgData, margin);
 }
 
 void UIButton::Release()
@@ -50,5 +50,5 @@ void UIButton::ResourceInit(ImageData imgData, ImageData bgData, RECT margin)
 {
 	UIIcon::ResourceInit(imgData, bgData, margin);
 	textUI = new UIText();
-	textUI->Init(rectTransform);
+	textUI->Init(nullptr, rectTransform);
 }

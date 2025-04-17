@@ -19,6 +19,7 @@ namespace UI
 		void Render(HDC hdc) override;
 
 		void SetText(const string& text);
+		void SetStatus(StatInfo statInfo);
 
 	protected:
 		void ResourceInit() override;

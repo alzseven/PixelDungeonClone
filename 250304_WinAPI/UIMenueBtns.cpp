@@ -61,16 +61,16 @@ void UIMenueBtns::Render(HDC hdc)
 void UIMenueBtns::ResourceInit()
 {
 	stairIcon = new UIIcon();
-	stairIcon->Init(CaculateRelativeRECT(rectTransform, {8,5,33,29}),
+	stairIcon->Init(this, CaculateRelativeRECT(rectTransform, {8,5,33,29}),
 		ImageData{ "stair_ico", L"assets/interfaces/stair_ico.bmp", true, RGB(255, 255, 255) });
 	stairTextUI = new UIText();
-	stairTextUI->Init(CaculateRelativeRECT(rectTransform, {0,40,49,56}),
+	stairTextUI->Init(this, CaculateRelativeRECT(rectTransform, {0,40,49,56}),
 		"1", RGB(255, 255, 255));
 	guideBookBtn = new UIButton();
-	guideBookBtn->Init(CaculateRelativeRECT(rectTransform, {49, 0, 104, 56}), 
+	guideBookBtn->Init(this, CaculateRelativeRECT(rectTransform, {49, 0, 104, 56}), 
 		ImageData{ "guidebook_btn", L"assets/interfaces/guidebook_btn.bmp", true, RGB(255, 255, 255) });
 	menuBtn = new UIButton();
-	menuBtn->Init(CaculateRelativeRECT(rectTransform, {104, 0, 159, 56}),
+	menuBtn->Init(this, CaculateRelativeRECT(rectTransform, {104, 0, 159, 56}),
 		ImageData{ "menu_btn", L"assets/interfaces/menu_btn.bmp", true, RGB(255, 255, 255) });
 
 }

@@ -29,7 +29,7 @@ void UI::UIDefeat::Render(HDC hdc)
 void UI::UIDefeat::ResourceInit()
 {
     defeatImage = new UIImage();
-    defeatImage->Init(CaculateRelativeRECT(rectTransform, { 0, 0, width/3, height/5}),
+    defeatImage->Init(this, CaculateRelativeRECT(rectTransform, { 0, 0, width/3, height/5}),
         ImageData{ "defeat_img", L"assets/interfaces/defeat_img.bmp", true, RGB(255, 255, 255) },
         { 0,  0, 0, 0 });
     defeatImage->SetPos(centerX, height / 3);

@@ -2,16 +2,16 @@
 
 using namespace UI;
 
-void UIText::Init(RECT rect, const string& text, COLORREF textColor)
+void UIText::Init(UIObject* parent, RECT rect, const string& text, COLORREF textColor)
 {
-	UIObject::Init(rect);
+	UIObject::Init(parent, rect);
 	this->text = text;
 	this->textColor = textColor;
 }
 
-void UIText::Init(int dx, int dy, int width, int height, const string& text, COLORREF textColor)
+void UIText::Init(UIObject* parent, int dx, int dy, int width, int height, const string& text, COLORREF textColor)
 {
-	UIObject::Init(dx, dy, width, height);
+	UIObject::Init(parent, dx, dy, width, height);
 	this->text = text;
 	this->textColor = textColor;
 }

@@ -11,9 +11,9 @@ namespace UI
 		UIIcon() = default;
 		~UIIcon() override = default;  
 
-		void Init(RECT rect, 
+		void Init(UIObject* parent, RECT rect,
 			ImageData imgData = { "", L"", 0, 0 }, ImageData bgData = { "", L"", 0, 0 }, RECT margin = { 0,0,0,0 });
-		void Init(int dx, int dy, int width, int height  
+		void Init(UIObject* parent, int dx, int dy, int width, int height
 			, ImageData imgData = { "", L"", 0, 0 }, ImageData bgData = { "", L"", 0, 0 }, RECT margin = { 0,0,0,0 });
 		void Release() override;  
 		void Update() override;

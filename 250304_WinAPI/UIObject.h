@@ -11,28 +11,40 @@ namespace UI
 		COLORREF transColor{ RGB(0,0,0) };
 	};
 
+	struct StatInfo
+	{
+		int HP;
+		int MaxHP;
+		int Exp;
+		int MaxExp;
+		int Level;
+	};
+
 	class UIObject
 	{
 	public:
 		UIObject() = default;
 		virtual ~UIObject() = default;
 
-		virtual void Init(RECT rect);
-		virtual void Init(int dx = 0, int dy = 0, int width = 0, int height = 0);
+		virtual void Init(UIObject* parent, RECT rect = {0,0,0,0});
+		virtual void Init(UIObject* parent = nullptr, int dx = 0, int dy = 0, int width = 0, int height = 0);
 		virtual void Release() = 0;
 		virtual void Update() = 0;
 		virtual void Render(HDC hdc) = 0;
 
-		void SetPos(int dx, int dy);
+		void SetParent(UIObject* parent);
+		virtual void SetPos(int dx, int dy);
 		void SetScale(int width, int height);
 		void SetRect(RECT rect);
 		void SetRect(int dx, int dy, int width, int height);
 
-
 	protected:
 		void UpdateRectTransform();
 
+	public:
+		bool isVisible{ true };
 	protected:
+		UIObject* parent{ nullptr };
 		int centerX{ 0 };
 		int centerY{ 0 };
 		int width{ 0 };

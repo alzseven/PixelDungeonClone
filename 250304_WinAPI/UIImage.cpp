@@ -3,16 +3,16 @@
 
 using namespace UI;
 
-void UI::UIImage::Init(RECT rect, ImageData imgData, RECT margin)
+void UI::UIImage::Init(UIObject* parent, RECT rect, ImageData imgData, RECT margin)
 {
-	UIObject::Init(rect);
+	UIObject::Init(parent, rect);
 
 	ResourceInit(imgData, margin);
 }
 
-void UI::UIImage::Init(int dx, int dy, int width, int height, ImageData imgData, RECT margin)
+void UI::UIImage::Init(UIObject* parent, int dx, int dy, int width, int height, ImageData imgData, RECT margin)
 {
-	UIObject::Init(dx, dy, width, height);
+	UIObject::Init(parent, dx, dy, width, height);
 
 	ResourceInit(imgData, margin);
 }

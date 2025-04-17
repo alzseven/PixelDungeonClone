@@ -80,35 +80,44 @@ void UI::UIStatus::SetText(const string& text)
 	}
 }
 
+void UI::UIStatus::SetStatus(StatInfo statInfo)
+{
+    hpBar->SetMaxValue(statInfo.MaxHP);
+    hpBar->SetValue(statInfo.HP);
+    expBar->SetMaxValue(statInfo.MaxExp);
+    expBar->SetValue(statInfo.Exp);
+    levelTextUI->SetText("Lv. " + to_string(statInfo.Level));
+}
+
 void UIStatus::ResourceInit()  
 {  
    auto imageManager = ImageManager::GetInstance();  
 
    icon = new UIIcon();  
-   icon->Init(CaculateRelativeRECT(rectTransform, { 0, 0, 67, 68 }),  
+   icon->Init(this, CaculateRelativeRECT(rectTransform, { 0, 0, 67, 68 }),  
        ImageData{ "status_character_ico", L"assets/sprites/TempCh.bmp", true, RGB(255, 255, 255) },  
        ImageData{ "status_character_bg", L"assets/sprites/TempChBg.bmp", true, RGB(255, 255, 255) }  
        , { 10, 10 , 0, 0 });  
    hpBar = new UITextSlider();  
-   hpBar->Init(CaculateRelativeRECT(rectTransform, { 67, 34, 355, 68 }),  
+   hpBar->Init(this, CaculateRelativeRECT(rectTransform, { 67, 34, 355, 68 }),  
        ImageData{ "status_hp_bar", L"assets/interfaces/HPBar.bmp", true, RGB(255, 255, 255) },  
        ImageData{ "status_hp_bg", L"assets/interfaces/BarBg.bmp", true, RGB(255, 255, 255) }, 
        ImageData{"",L"",0,0},
        {5, 9, 10, 5});
-   hpBar->SetMaxHP(100);
-   hpBar->SetHP(70);
+   hpBar->SetMaxValue(100);
+   hpBar->SetValue(70);
 
    expBar = new UITextSlider();  
-   expBar->Init(CaculateRelativeRECT(rectTransform, { 67, 68, 355, 97 }),  
+   expBar->Init(this, CaculateRelativeRECT(rectTransform, { 67, 68, 355, 97 }),  
        ImageData{ "status_exp_bar", L"assets/interfaces/ExpBar.bmp", true, RGB(255, 255, 255) },  
        ImageData{ "status_exp_bg", L"assets/interfaces/BarBg.bmp", true, RGB(255, 255, 255) },
        ImageData{ "",L"",0,0 },
        { 5, 7, 10, 5 });
-   expBar->SetMaxHP(30);
-   expBar->SetHP(13);
+   expBar->SetMaxValue(30);
+   expBar->SetValue(13);
 
    levelTextUI = new UITextBox();  
-   levelTextUI->Init(CaculateRelativeRECT(rectTransform, { 0, 68, 67, 97 }), "lv 1.",
+   levelTextUI->Init(this, CaculateRelativeRECT(rectTransform, { 0, 68, 67, 97 }), "lv. 1",
        ImageData{ "status_level", L"assets/interfaces/level_box.bmp", true, RGB(255,255,255) }
    , { 0, 5, 0, 0 });
 }

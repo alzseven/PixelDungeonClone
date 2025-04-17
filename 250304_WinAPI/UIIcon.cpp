@@ -4,16 +4,16 @@
 
 using namespace UI;
 
-void UIIcon::Init( RECT rect, ImageData imgData, ImageData bgData, RECT margin)
+void UIIcon::Init(UIObject* parent, RECT rect, ImageData imgData, ImageData bgData, RECT margin)
 {
-	UIObject::Init(rect);
+	UIObject::Init(parent, rect);
 
 	ResourceInit(imgData, bgData, margin);
 }
 
-void UIIcon::Init( int dx, int dy, int width, int height, ImageData imgData, ImageData bgData, RECT margin)
+void UIIcon::Init(UIObject* parent, int dx, int dy, int width, int height, ImageData imgData, ImageData bgData, RECT margin)
 {
-	UIObject::Init(dx, dy, width, height);
+	UIObject::Init(parent, dx, dy, width, height);
 
 	ResourceInit(imgData, bgData, margin);
 }

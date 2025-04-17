@@ -12,8 +12,8 @@ namespace UI
         void Release() override;
         void Render(HDC hdc) override;
 
-		void SetMaxHP(float hp) override;
-		void SetHP(float hp) override;
+		void SetMaxValue(float value) override;
+		void SetValue(float value) override;
 
     protected:
         void ResourceInit(ImageData imgData, ImageData bgData = { "", L"", 0, 0 }, ImageData handleData = { "", L"", 0, 0 },

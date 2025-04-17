@@ -139,6 +139,7 @@
     <ClCompile Include="UIItemBox.cpp" />
     <ClCompile Include="UIMenueBtns.cpp" />
     <ClCompile Include="UIMopHPBar.cpp" />
+    <ClCompile Include="UIPanel.cpp" />
     <ClCompile Include="UIQuickSlot.cpp" />
     <ClCompile Include="UISlider.cpp" />
     <ClCompile Include="Image.cpp" />
@@ -153,7 +154,7 @@
     <ClCompile Include="TilemapTool.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TimerManager.cpp" />
-    <ClCompile Include="UIView.cpp" />
+    <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="UIObject.cpp" />
     <ClCompile Include="UIText.cpp" />
     <ClCompile Include="UITextBox.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="UIItemBox.h" />
     <ClInclude Include="UIMenueBtns.h" />
     <ClInclude Include="UIMopHPBar.h" />
+    <ClInclude Include="UIPanel.h" />
     <ClInclude Include="UIQuickSlot.h" />
     <ClInclude Include="UISlider.h" />
     <ClInclude Include="Image.h" />
@@ -190,7 +192,7 @@
     <ClInclude Include="TilemapTool.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TimerManager.h" />
-    <ClInclude Include="UIView.h" />
+    <ClInclude Include="UIManager.h" />
     <ClInclude Include="UIObject.h" />
     <ClInclude Include="UIText.h" />
     <ClInclude Include="UITextBox.h" />

@@ -10,8 +10,8 @@ namespace UI
 	public:
 		~UITextBox() override = default;
 
-		void Init(RECT rect, const string& text = "", ImageData bgData = { "", L"", 0, 0 }, RECT margin = { 0,0,0,0 });
-		void Init(int dx, int dy, int width, int height, const string& text="", ImageData bgData = {"", L"", 0, 0}, RECT margin = { 0,0,0,0 });
+		void Init(UIObject* parent, RECT rect, const string& text = "", ImageData bgData = { "", L"", 0, 0 }, RECT margin = { 0,0,0,0 });
+		void Init(UIObject* parent, int dx, int dy, int width, int height, const string& text="", ImageData bgData = {"", L"", 0, 0}, RECT margin = { 0,0,0,0 });
 		void Release() override;
 		void Update() override;
 		void Render(HDC hdc) override;

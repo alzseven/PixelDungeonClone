@@ -13,22 +13,24 @@ namespace UI
         UISlider() = default;
         ~UISlider() override = default;
 
-        void Init(RECT rect,
+        void Init(UIObject* parent, RECT rect,
             ImageData imgSData, ImageData bgData = { "", L"", 0, 0 }, ImageData handleData = { "", L"", 0, 0 },
             RECT margin = {0,0,0,0});
-        void Init(int dx,int dy, int width, int height, 
+        void Init(UIObject* parent, int dx,int dy, int width, int height,
             ImageData imgData, ImageData bgData = { "", L"", 0, 0 }, ImageData handleData = { "", L"", 0, 0 },
             RECT margin = { 0,0,0,0 });
         void Release() override;
         void Update() override;
         void Render(HDC hdc) override;
 
-        virtual void SetMaxHP(float hp);
-        virtual void SetHP(float hp);
+        void SetPos(int dx, int dy) override;
+        virtual void SetMaxValue(float value);
+        virtual void SetValue(float value);
 
     protected:
         virtual void ResourceInit(ImageData imgData, ImageData bgData = { "", L"", 0, 0 }, ImageData handleData = { "", L"", 0, 0 },
             RECT margin = { 0,0,0,0 });
+        virtual void ApplyFillImage();
         float SmoothDamp(float current, float target, float& velocity, float smoothTime, float deltaTime);
 
     protected:
@@ -36,13 +38,16 @@ namespace UI
         Image* fill;
         Image* handleImg;
 
+        RECT margin{ 0,0,0,0 };
         RECT fillRectTransfrom{ 0,0,0,0 };
+        float fillOriginWidth;
+        float fillOriginHeight;
         int handleWidth;
         int handleHeight;
 
-        float currentHP{ 100 };
-        float goalHP{ 100 };
-        float maxHP{ 100 };
+        float currentValue{ 100 };
+        float goalValue{ 100 };
+        float maxValue{ 100 };
         float fillValue = 1.0f;
         float elapsedTime = 0.0f;
         float timeDelta{ 0.0f };

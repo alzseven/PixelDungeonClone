@@ -5,16 +5,16 @@
 
 using namespace UI;  
 
-void UITextBox::Init(RECT rect, const string& text, ImageData bgData, RECT margin)
+void UITextBox::Init(UIObject* parent, RECT rect, const string& text, ImageData bgData, RECT margin)
 {  
-   UIObject::Init(rect);  
+   UIObject::Init(parent, rect);  
 
    ResourceInit(text, bgData, margin);
 }  
 
-void UITextBox::Init(int dx, int dy, int width, int height, const string& text, ImageData bgData, RECT margin)
+void UITextBox::Init(UIObject* parent, int dx, int dy, int width, int height, const string& text, ImageData bgData, RECT margin)
 {  
-   UIObject::Init(dx, dy, width, height);  
+   UIObject::Init(parent, dx, dy, width, height);  
 
    ResourceInit(text, bgData, margin); 
 }  
@@ -66,6 +66,6 @@ void UITextBox::ResourceInit(const string& text, ImageData bgData, RECT margin)
         bg = ImageManager::GetInstance()->AddImage(bgData.keyName, bgData.filePath, width, height);
     }
    textUI = new UIText();  
-   textUI->Init(rectTransform, text);  
+   textUI->Init(nullptr, rectTransform, text);  
    textUI->SetPos(centerX + margin.left, centerY + margin.top);
 }

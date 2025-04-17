@@ -2,11 +2,11 @@
 #include "Image.h"
 #include "CommonFunction.h"
 #include "config.h"
-#include "UIView.h"
+#include "UIManager.h"
 #include "UIMopHPBar.h"
 UI::UIMopHPBar mopHPBar;
 
-UI::UIView uiView;
+UI::UIManager UIManager;
 
 HRESULT UI_TestScene::Init()
 {
@@ -20,8 +20,10 @@ HRESULT UI_TestScene::Init()
 		return E_FAIL;
 	}
 
-	uiView.Init({ 0, 0, WINSIZE_X, WINSIZE_Y });
-	mopHPBar.Init(WINSIZE_X/2, WINSIZE_Y/2, 50, 10);
+	UIManager.Init();
+	mopHPBar.Init(nullptr, WINSIZE_X/2, WINSIZE_Y/2, 50, 10);
+	mopHPBar.SetMaxHP(30);
+	mopHPBar.SetHP(10);
 
     return S_OK;
 }
@@ -38,13 +40,27 @@ void UI_TestScene::Release()
 
 void UI_TestScene::Update()
 {
-	uiView.Update();
+	UIManager.Update();
 	mopHPBar.Update();
+	mopHPBar.SetPos(g_ptMouse.x, g_ptMouse.y);
+
+	if (KeyManager::GetInstance()->IsOnceKeyDown('K'))
+	{
+		UIManager.ShowDefeat(true);
+		UIManager.SetStatus(UI::StatInfo{ 100, 100, 100, 100, 100 });
+		mopHPBar.SetHP(20);
+	}
+
+	if (KeyManager::GetInstance()->IsOnceKeyDown('R'))
+	{
+		UIManager.Reset();
+		mopHPBar.SetHP(10);
+	}
 }
 
 void UI_TestScene::Render(HDC hdc)
 {
-	//backGround->Render(hdc);
-	uiView.Render(hdc);
+	backGround->Render(hdc);
+	UIManager.Render(hdc);
 	mopHPBar.Render(hdc);
 }

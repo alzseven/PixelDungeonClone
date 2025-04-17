@@ -57,18 +57,18 @@ void UIQuickSlot::ResourceInit()
 	for (int i = 0; i < 3; ++i)
 	{
 		auto itemBox = new UIItemBox();
-		itemBox->Init(CaculateRelativeRECT(rectTransform, { 55 * i, 8, 55 * (i + 1), 67 }),
+		itemBox->Init(this, CaculateRelativeRECT(rectTransform, { 55 * i, 8, 55 * (i + 1), 67 }),
 			ImageData{ "item_quick", L"assets/interfaces/item_quick.bmp", true, RGB(255, 255, 255) });
 
 		ItemBox.push_back(itemBox);
 	}
 	SearchBtn = new UIButton();
-	SearchBtn->Init(CaculateRelativeRECT(rectTransform, { 165, 0, 218, 67 }),
+	SearchBtn->Init(this, CaculateRelativeRECT(rectTransform, { 165, 0, 218, 67 }),
 		ImageData{ "search_quick", L"assets/interfaces/search_quick.bmp", true, RGB(255, 255, 255) });
 	SlepBtn = new UIButton();
-	SlepBtn->Init(CaculateRelativeRECT(rectTransform, { 218, 0, 271, 67 }),
+	SlepBtn->Init(this, CaculateRelativeRECT(rectTransform, { 218, 0, 271, 67 }),
 		ImageData{ "sleep_quick", L"assets/interfaces/sleep_quick.bmp", true, RGB(255, 255, 255) });
 	BackpackBtn = new UIButton();
-	BackpackBtn->Init(CaculateRelativeRECT(rectTransform, {271, 0, 337, 67}), 
+	BackpackBtn->Init(this, CaculateRelativeRECT(rectTransform, {271, 0, 337, 67}), 
 		ImageData{ "inven_quick", L"assets/interfaces/inven_quick.bmp", true, RGB(255, 255, 255) });
 }

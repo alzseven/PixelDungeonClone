@@ -27,20 +27,20 @@ namespace UI
 		}
 	}
 
-	void UITextSlider::SetMaxHP(float hp)
+	void UITextSlider::SetMaxValue(float Value)
 	{
-		UISlider::SetMaxHP(hp);
+		UISlider::SetMaxValue(Value);
 		if (!valueText) return;
-		string hpString = (to_string((int)goalHP) + " / " + to_string((int)maxHP));
-		valueText->SetText(hpString);
+		string ValueString = (to_string((int)goalValue) + " / " + to_string((int)maxValue));
+		valueText->SetText(ValueString);
 	}
 
-	void UITextSlider::SetHP(float hp)
+	void UITextSlider::SetValue(float Value)
 	{
-		UISlider::SetHP(hp);
+		UISlider::SetValue(Value);
 		if (!valueText) return;
-		string hpString = (to_string((int)goalHP) + " / " + to_string((int)maxHP));
-		valueText->SetText(hpString);
+		string ValueString = (to_string((int)goalValue) + " / " + to_string((int)maxValue));
+		valueText->SetText(ValueString);
 	}
 
 	void UITextSlider::ResourceInit(ImageData imgData, ImageData bgData, ImageData handleData, RECT margin)
@@ -48,9 +48,9 @@ namespace UI
 		UISlider::ResourceInit(imgData, bgData, handleData, margin);
 
 		valueText = new UIText();
-		string hpString = (to_string((int)goalHP) + " / " + to_string((int)maxHP));
-		valueText->Init({ rectTransform.left + margin.left, rectTransform.top + margin.top + 10, 
+		string ValueString = (to_string((int)goalValue) + " / " + to_string((int)maxValue));
+		valueText->Init(nullptr, { rectTransform.left + margin.left, rectTransform.top + margin.top + 10, 
 			rectTransform.right - margin.right, rectTransform.bottom - margin.bottom  }
-		, hpString, RGB(255, 255, 255));
+		, ValueString, RGB(255, 255, 255));
 	}
 }

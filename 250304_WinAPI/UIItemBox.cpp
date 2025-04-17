@@ -49,7 +49,7 @@ void UIItemBox::SetText2(const string& str)
 
 void UIItemBox::SetItem(ImageData itemImgData)
 {
-	itemIcon->Init(rectTransform, itemImgData);
+	itemIcon->Init(nullptr, rectTransform, itemImgData);
 }
 
 void UIItemBox::ResourceInit(ImageData imgData, ImageData bgData, RECT margin)
@@ -60,7 +60,7 @@ void UIItemBox::ResourceInit(ImageData imgData, ImageData bgData, RECT margin)
 	textUI->SetText("TESTSTMI");
 
 	textUI2 = new UIText;
-	textUI2->Init(CaculateRelativeRECT(rectTransform, { 0,height/2, width, height }), "ㄴㄹㄴㄹㄴ");
+	textUI2->Init(nullptr, CaculateRelativeRECT(rectTransform, { 0,height/2, width, height }), "ㄴㄹㄴㄹㄴ");
 
 	itemIcon = new UIIcon;
 }

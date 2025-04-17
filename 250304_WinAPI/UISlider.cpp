@@ -3,18 +3,18 @@
 
 using namespace UI;
 
-void UISlider::Init(RECT rect,
+void UISlider::Init(UIObject* parent, RECT rect,
     ImageData imgData, ImageData bgData, ImageData handleData, RECT margin)
 {
-    this->UIObject::Init(rect);
+    this->UIObject::Init(parent, rect);
 
     ResourceInit(imgData, bgData, handleData, margin);
 }
 
-void UISlider::Init(int dx, int dy, int width, int height,
+void UISlider::Init(UIObject* parent, int dx, int dy, int width, int height,
     ImageData imgData, ImageData bgData , ImageData handleData, RECT margin)
 {
-    this->UIObject::Init(dx, dy, width, height);
+    this->UIObject::Init(parent, dx, dy, width, height);
 
     ResourceInit(imgData, bgData, handleData, margin);
 }
@@ -41,12 +41,12 @@ void UISlider::Update()
 {
     elapsedTime += timeDelta;
 
-    if (currentHP != goalHP && elapsedTime >= 0.016f) // 약 60FPS 기준으로 최소 주기 설정
+    if (currentValue != goalValue && elapsedTime >= 0.016f) // 약 60FPS 기준으로 최소 주기 설정
     {
-        currentHP = smoothTime > 0.0f ? SmoothDamp(currentHP, goalHP, currentVelocity, smoothTime, elapsedTime) : goalHP;
+        currentValue = smoothTime > 0.0f ? SmoothDamp(currentValue, goalValue, currentVelocity, smoothTime, elapsedTime) : goalValue;
         elapsedTime = 0.0f;
 
-        fillValue = max(0.0f, min((currentHP / maxHP), 1.0f));
+        fillValue = max(0.0f, min((currentValue / maxValue), 1.0f));
         
         if (fill)
         {
@@ -71,21 +71,26 @@ void UISlider::Render(HDC hdc)
     }
 }
 
-void UISlider::SetMaxHP(float hp)
+void UI::UISlider::SetPos(int dx, int dy)
 {
-    maxHP = hp;
-    fillValue = max(0.0f, min((goalHP / maxHP), 1.0f));
+    UIObject::SetPos(dx, dy);
+    fillRectTransfrom = { rectTransform.left + margin.left, rectTransform.top + margin.top,
+        rectTransform.left + (int)(width * fillValue), rectTransform.bottom };
 }
 
-void UISlider::SetHP(float hp)
+void UISlider::SetMaxValue(float value)
 {
-    goalHP = hp;
-    fillValue = max(0.0f, min((goalHP / maxHP), 1.0f));
+    maxValue = value;
 
-    if (fill)
-    {
-        fill->SetWidth(fill->GetWidth() * fillValue);
-    }
+    SetValue(goalValue);
+}
+
+void UISlider::SetValue(float value)
+{
+    goalValue = value;
+    fillValue = max(0.0f, min((goalValue / maxValue), 1.0f));
+
+    ApplyFillImage();
 }
 
 void UISlider::ResourceInit(ImageData fillData, ImageData bgData, ImageData handleData, RECT margin)
@@ -102,10 +107,22 @@ void UISlider::ResourceInit(ImageData fillData, ImageData bgData, ImageData hand
         handleImg = ImageManager::GetInstance()->AddImage(handleData.keyName, handleData.filePath, handleWidth, handleHeight, handleData.isTransparent, handleData.transColor);
     }
 
+    this->margin = margin;
+
 	fillRectTransfrom = { rectTransform.left + margin.left, rectTransform.top + margin.top,
 		rectTransform.left + (int)(width * fillValue), rectTransform.bottom};
     fill->SetWidth(width - margin.left - margin.right);
+    fillOriginWidth = fill->GetWidth();
     fill->SetHeight(height - margin.top - margin.bottom);
+    fillOriginHeight = fill->GetHeight();
+}
+
+void UI::UISlider::ApplyFillImage()
+{
+    if (fill)
+    {
+        fill->SetWidth(fillOriginWidth * fillValue);
+    }
 }
 
 float UISlider::SmoothDamp(float current, float target, float& velocity, float smoothTime, float deltaTime)
@@ -126,3 +143,4 @@ float UISlider::SmoothDamp(float current, float target, float& velocity, float s
 
     return output;
 }
+
