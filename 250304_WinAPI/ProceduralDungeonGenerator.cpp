@@ -667,43 +667,77 @@ int ProceduralDungeonGenerator::DetermineWallVariation(const std::vector<std::ve
                map[y][x] == TILE_EXIT ||
                map[y][x] == TILE_HIDDEN_DOOR;
     };
-    
-    // 비트마스크 생성: 8개 방향의 타일 상태를 하나의 값으로 압축
-    // 0b00000000: 시계 방향으로 8방향 표현 (상, 우상, 우, 우하, 하, 좌하, 좌, 좌상)
-    int mask = 0;
-    if (isFloor(x, y-1)) mask |= 0b00000001; // 상
-    if (isFloor(x+1, y-1)) mask |= 0b00000010; // 우상
-    if (isFloor(x+1, y)) mask |= 0b00000100; // 우
-    if (isFloor(x+1, y+1)) mask |= 0b00001000; // 우하
-    if (isFloor(x, y+1)) mask |= 0b00010000; // 하
-    if (isFloor(x-1, y+1)) mask |= 0b00100000; // 좌하
-    if (isFloor(x-1, y)) mask |= 0b01000000; // 좌
-    if (isFloor(x-1, y-1)) mask |= 0b10000000; // 좌상
-    
-    // 비트마스크 값에 따라 타일 타입 결정
-    switch (mask) {
-        // 내부 모서리
-        case 0b10000011: return TILE_WALL_INNER_CORNER_TL; // 상+좌+좌상
-        case 0b00000111: return TILE_WALL_INNER_CORNER_TR; // 상+우+우상
-        case 0b01110000: return TILE_WALL_INNER_CORNER_BL; // 하+좌+좌하
-        case 0b00011100: return TILE_WALL_INNER_CORNER_BR; // 하+우+우하
-        
-        // 외부 모서리
-        case 0b01000001: return TILE_WALL_CORNER_TL; // 상+좌 (좌상X)
-        case 0b00000101: return TILE_WALL_CORNER_TR; // 상+우 (우상X)
-        case 0b01010000: return TILE_WALL_CORNER_BL; // 하+좌 (좌하X)
-        case 0b00010100: return TILE_WALL_CORNER_BR; // 하+우 (우하X)
-        
-        // 일반 벽
-        case 0b00000001: return TILE_WALL_BOTTOM; // 상
-        case 0b00010000: return TILE_WALL_TOP; // 하
-        case 0b01000000: return TILE_WALL_RIGHT; // 좌
-        case 0b00000100: return TILE_WALL_LEFT; // 우
-        
-        // 필요에 따라 더 많은 케이스 추가 가능
-        
-        default: return TILE_WALL; // 기본 벽
-    }
+
+    // 주변 8칸 바닥 상태 확인
+    bool tl = isFloor(x - 1, y - 1);
+    bool above = isFloor(x, y - 1);
+    bool tr = isFloor(x + 1, y - 1);
+    bool left = isFloor(x - 1, y);
+    bool right = isFloor(x + 1, y);
+    bool bl = isFloor(x - 1, y + 1);
+    bool below = isFloor(x, y + 1);
+    bool br = isFloor(x + 1, y + 1);
+
+    // 패턴 코드 계산 (비트 할당 순서는 일관적이기만 하면 됩니다)
+    int patternCode = 0;
+    if (tl) patternCode |= 1;    // 2^0
+    if (above) patternCode |= 2; // 2^1
+    if (tr) patternCode |= 4;    // 2^2
+    if (left) patternCode |= 8;  // 2^3
+    if (right) patternCode |= 16;// 2^4
+    if (bl) patternCode |= 32;   // 2^5
+    if (below) patternCode |= 64;// 2^6
+    if (br) patternCode |= 128;  // 2^7
+
+    return patternCode;
+    // int height = map.size();
+    // int width = map[0].size();
+    //
+    // auto isFloor = [&](int x, int y) -> bool {
+    //     if (x < 0 || x >= width || y < 0 || y >= height) return false;
+    //     return map[y][x] == TILE_FLOOR || 
+    //            map[y][x] == TILE_DOOR || 
+    //            map[y][x] == TILE_ENTRANCE || 
+    //            map[y][x] == TILE_EXIT ||
+    //            map[y][x] == TILE_HIDDEN_DOOR;
+    // };
+    //
+    // // 비트마스크 생성: 8개 방향의 타일 상태를 하나의 값으로 압축
+    // // 0b00000000: 시계 방향으로 8방향 표현 (상, 우상, 우, 우하, 하, 좌하, 좌, 좌상)
+    // int mask = 0;
+    // if (isFloor(x, y-1)) mask |= 0b00000001; // 상
+    // if (isFloor(x+1, y-1)) mask |= 0b00000010; // 우상
+    // if (isFloor(x+1, y)) mask |= 0b00000100; // 우
+    // if (isFloor(x+1, y+1)) mask |= 0b00001000; // 우하
+    // if (isFloor(x, y+1)) mask |= 0b00010000; // 하
+    // if (isFloor(x-1, y+1)) mask |= 0b00100000; // 좌하
+    // if (isFloor(x-1, y)) mask |= 0b01000000; // 좌
+    // if (isFloor(x-1, y-1)) mask |= 0b10000000; // 좌상
+    //
+    // // 비트마스크 값에 따라 타일 타입 결정
+    // switch (mask) {
+    //     // 내부 모서리
+    //     case 0b10000011: return TILE_WALL_INNER_CORNER_TL; // 상+좌+좌상
+    //     case 0b00000111: return TILE_WALL_INNER_CORNER_TR; // 상+우+우상
+    //     case 0b01110000: return TILE_WALL_INNER_CORNER_BL; // 하+좌+좌하
+    //     case 0b00011100: return TILE_WALL_INNER_CORNER_BR; // 하+우+우하
+    //     
+    //     // 외부 모서리
+    //     case 0b01000001: return TILE_WALL_CORNER_TL; // 상+좌 (좌상X)
+    //     case 0b00000101: return TILE_WALL_CORNER_TR; // 상+우 (우상X)
+    //     case 0b01010000: return TILE_WALL_CORNER_BL; // 하+좌 (좌하X)
+    //     case 0b00010100: return TILE_WALL_CORNER_BR; // 하+우 (우하X)
+    //     
+    //     // 일반 벽
+    //     case 0b00000001: return TILE_WALL_BOTTOM; // 상
+    //     case 0b00010000: return TILE_WALL_TOP; // 하
+    //     case 0b01000000: return TILE_WALL_RIGHT; // 좌
+    //     case 0b00000100: return TILE_WALL_LEFT; // 우
+    //     
+    //     // 필요에 따라 더 많은 케이스 추가 가능
+    //     
+    //     default: return TILE_WALL; // 기본 벽
+    // }
 }
 
 int ProceduralDungeonGenerator::DetermineFloorVariation(const std::vector<std::vector<int>>& map, int x, int y) {

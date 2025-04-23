@@ -184,13 +184,13 @@ void Level::Render(HDC hdc)
             if (!shouldBeRender[TILE_X * i + j]) continue;
 
             bool isVisible = map[TILE_X * i + j].visible;
+            int rawType = map[TILE_X * i + j].type;
             int tileType = rendermap[TILE_X * i + j];
             int tileX = camera->ConvertToRendererX(tempTile[TILE_X * i + j].left);
             int tileY = camera->ConvertToRendererY(tempTile[TILE_X * i + j].top);
 
             // 벽 타일인 경우 세부 렌더링 사용
-            if (tileType == 0 || 
-                (tileType >= 10 && tileType <= 31)) {
+            if (rawType == 0) {
                 // 벽 타일 렌더링
                 dungeonSystem.GetDungeonGenerator()->RenderWallTile(
                     wallTile, j, i, tileX, tileY, 

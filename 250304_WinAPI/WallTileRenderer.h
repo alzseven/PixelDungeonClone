@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <vector>
 #include <array>
+#include <map>
 
 // 개선된 벽 타일 렌더러 클래스 - 내부/외부 코너 구분 명확화
 class WallTileRenderer {
@@ -84,6 +85,8 @@ private:
     std::array<TilePosition, 4> verticalSubTiles;
     std::array<TilePosition, 4> isolatedSubTiles;
 
+    std::map<int, std::array<TilePosition, 4>> patternSubTileMap;
+    
     // 타일 유형 확인 헬퍼 함수
     bool IsWall(const std::vector<std::vector<int>>& map, int x, int y);
     bool IsFloor(const std::vector<std::vector<int>>& map, int x, int y);
