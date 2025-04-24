@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include <d2d1.h>
 #include <dwrite.h>
 #include <wrl.h>
 #include <map>
@@ -29,4 +30,5 @@ public:
         DWRITE_TEXT_ALIGNMENT horizontalAlign = DWRITE_TEXT_ALIGNMENT_LEADING,
         DWRITE_PARAGRAPH_ALIGNMENT verticalAlign = DWRITE_PARAGRAPH_ALIGNMENT_NEAR
     );
+    void CreateTextLayout(const std::wstring& text, IDWriteTextFormat* format, float width, float height, IDWriteTextLayout** layout);
 };

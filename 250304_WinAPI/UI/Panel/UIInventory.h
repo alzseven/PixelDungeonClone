@@ -8,12 +8,19 @@
 #include "../Test/UITestEffectManager.h"
 #include "../Util/UIHelper.h"
 #include "../Image/UI9PatchImage.h"
+#include "../UIData.h"
+#include "../../Player.h"
+#include "../../Inventory.h"
+#include "../../Item.h"
 
-class UIInventory : public UIContainer {
+class UIInventory : public UIContainer, public IEntityObserver {
 private:
     UITextBox* titleText = nullptr;
     UIContainer* gridArea = nullptr;
     UIContainer* bottomSection = nullptr;
+    // UIItemPanel* uiItemPanel = nullptr;
+
+    vector<UIImageTextButton*> itemSlots;
     
     const int numCols = 5;
     const int numRows = 5;
@@ -30,6 +37,50 @@ public:
         AddTitleSection();
         AddGridSection();
         AddBottomSection();
+    }
+
+    void UpdateItemSlot(int idx,
+                         const UIInventorySlotData& data, const std::function<void()>& onClick)
+    {
+        UIHelper::UpdateInventorySlot(*itemSlots[idx], data, onClick);
+    }
+
+    int UseItemSlot(int idx)
+    {
+        UIManager::GetInstance()->UseUIItem(idx);
+        return idx;
+    }
+
+    void OnChangePlayerInven(Player* entity) {
+        if (!entity) return;
+
+        auto inven = entity->GetInven();
+        if (inven)
+        {
+            for (int idx = 0; idx < 25; ++idx)
+            {
+                auto slot = inven->GetSlot(idx);
+
+                if (slot.item)
+                {
+                    UIManager::GetInstance()->SendLog((L"Item IDX " + to_wstring(idx)), D2D1::ColorF(D2D1::ColorF::Blue));
+                    UIManager::GetInstance()->SendLog((L"Item 수량 " + to_wstring(slot.count)), D2D1::ColorF(D2D1::ColorF::Blue));
+                    UpdateItemSlot(
+                        idx,
+                        UIInventorySlotData{ slot.item->GetName(), slot.item->GetImage(), slot.count, 0},
+                        [this, idx]() {UseItemSlot(idx); }
+                    );
+                }
+                else
+                {
+                    UpdateItemSlot(
+                        idx,
+                        UIInventorySlotData{ "", nullptr, 0, 0},
+                        [this, idx]() {UseItemSlot(idx); }
+                    );
+                }
+            }
+        }
     }
 
 private:
@@ -78,18 +129,19 @@ private:
             D2D1_RECT_F dummyRect = { 0, 0, slotSize.width, slotSize.height };
             UIInventorySlotStyle inventorySlotStyle =
                 {
-                    { D2DImageManager::GetInstance()->FindImage("inventory_slot"), },
-                    { nullptr },
-                    { L"pixel", 14.0f, D2D1::ColorF::White },
-                    { L"pixel", 14.0f, D2D1::ColorF::White }
+                    ImageStyle { D2DImageManager::GetInstance()->FindImage("inventory_slot"), },
+                    ImageStyle { nullptr },
+                    TextStyle { L"pixel", 24.0f, D2D1::ColorF(D2D1::ColorF::White), true, DWRITE_TEXT_ALIGNMENT_LEADING, DWRITE_PARAGRAPH_ALIGNMENT_NEAR},
+                    TextStyle { L"pixel", 24.0f, D2D1::ColorF(D2D1::ColorF::White), true, DWRITE_TEXT_ALIGNMENT_TRAILING, DWRITE_PARAGRAPH_ALIGNMENT_FAR }
                 };  // 예시 스타일
             auto* slot = UIHelper::ApplyInventorySlotStyle(gridArea, dummyRect, inventorySlotStyle);
 
             slot->SetOnClick([this, i, slot]()
             {
-                wstring debugString = (L"클릭 대상 [" + to_wstring(i) + L"] 클릭\n");
-                UITestEffectManager::GetInstance()->AddEffect(debugString, slot->GetWorldRect());
+                UseItemSlot(i);
             });
+
+            itemSlots.push_back(slot);
         }
 
         gridArea->UpdateLayout();

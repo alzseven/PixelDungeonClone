@@ -1,8 +1,14 @@
-#include "HealPotion.h"
+ï»¿#include "HealPotion.h"
+#include "D2DImageManager.h"
+#include "D2DImage.h"
 #include "Entity.h"
 
-HealPotion::HealPotion()
+HealPotion::HealPotion(FPOINT position)
 {
+	this->position = position;
+	this->name = "ì²´ë ¥í¬ì…˜";
+	this->imageIdX = 0;
+	this->imageIdY = 21;
 }
 
 HealPotion::~HealPotion()
@@ -12,6 +18,11 @@ HealPotion::~HealPotion()
 void HealPotion::Use(Entity* user)
 {
 	if (!user || !user->IsAlive())	return;
-	// ÀÎÅÍÆäÀÌ½º¸¸,,
-	// user->Heal(healAmount);
+	
+	user->Heal(healAmount);
+}
+
+void HealPotion::Render(HDC hdc)
+{
+	image->Middle_RenderFrameScale(position.x, position.y, 2, 2, 0, 22);
 }

@@ -17,7 +17,7 @@ public:
         Clear();
     }
 
-    void Init(const D2D1_RECT_F& area, int maxLine = 5, float lineHeight = 10.0f, float spacing = 2.0f) {
+    void Init(const D2D1_RECT_F& area = { 20, 400, 375, 400 + 200 }, int maxLine = 6, float lineHeight = 20.0f, float spacing = 2.0f) {
         SetRect(area);
         SetMaxLineAndHeight(maxLine, lineHeight);
         // 세로 정렬, 아래에서 위로 쌓이도록 역순 삽입
@@ -32,9 +32,18 @@ public:
     void AddLog(const std::wstring& content, const TextStyle& style) {
         // 🔁 기존 텍스트 재활용
         UIText* text = pool.Get();
-        text->SetText(content);
-        text->SetStyle(style);
+        text->SetText(content, true);
         text->SetLocalRect(lineRect);
+        text->SetStyle(style);
+        
+        // auto curStyle = text->GetStyle();
+        // if (style.fontSize != curStyle.fontSize ||
+        //     style.color.r != curStyle.color.r || style.color.g != curStyle.color.g || style.color.b != curStyle.color.b || style.color.a != curStyle.color.a ||
+        //     style.horizontalAlign != curStyle.horizontalAlign || style.verticalAlign != curStyle.verticalAlign)
+        // {
+        //     TextStyle newStyle = style;
+        //     text->SetStyle(newStyle);
+        // }
 
         // UIContainer가 자식 자동 정렬
         AddChild(text);

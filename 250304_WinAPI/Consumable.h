@@ -3,7 +3,7 @@
 class Consumable : public Item
 {
 public:
-	Consumable() {};
+	Consumable() { this->type = ItemType::CONSUMABLE; }
 	virtual ~Consumable() {};
 };
 

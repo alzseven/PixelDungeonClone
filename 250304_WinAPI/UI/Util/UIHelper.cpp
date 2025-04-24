@@ -197,35 +197,33 @@ namespace UIHelper {
         }
     }
     
-    void UpdateInventorySlot(UIImageTextButton& slot, const UIInventorySlotStyle& style,
+    void UpdateInventorySlot(UIImageTextButton& slot,
                          const UIInventorySlotData& data, const std::function<void()>& onClick) {
         const auto& images = slot.GetImages();
         const auto& texts = slot.GetTexts();
 
-        // 배경 이미지
-        if (images.size() >= 1) {
-            if (style.background.image)
-            {
-                images[0]->SetImage(style.background.image);
-            }
-        }
+        //// 배경 이미지
+        //if (images.size() >= 1) {
+        //    if (style.background.image)
+        //    {
+        //        images[0]->SetImage(style.background.image);
+        //    }
+        //}
 
         // 아이콘 이미지
         if (images.size() >= 2) {
-            if (style.itemIcon.image) {
-                images[1]->SetImage(style.itemIcon.image);
-            }
+            images[1]->SetImage(data.icon);
         }
 
         // 수량 텍스트
         if (texts.size() >= 1) {
-            std::wstring countStr = std::to_wstring(data.quantity);
+            std::wstring countStr = data.quantity == 0 ? L"" : std::to_wstring(data.quantity);
             texts[0]->SetText(countStr);
         }
 
         // 강화 수치 텍스트
         if (texts.size() >= 2) {
-            std::wstring enhanceStr = std::to_wstring(data.enhancement);
+            std::wstring enhanceStr = data.enhancement == 0 ? L"" : std::to_wstring(data.enhancement);
             texts[1]->SetText(enhanceStr);
         }
 

@@ -4,15 +4,22 @@
 #include "../Button/UIImageTextButton.h"
 #include "../Text/UITextBox.h"
 #include "../Util/UIResourceSubManager.h"
+#include "../../Observer/IEntityObserver.h"
 
-class UIStatusToolbar : public UIContainer {
+class UIStatusToolbar : public UIContainer, public IEntityObserver {
 private:
     UIValueBar* hpBar = nullptr;
     UIValueBar* expBar = nullptr;
     UITextBox* levelText = nullptr;
 
 public:
-    void Init(const D2D1_RECT_F& rect = { 0.0f, 610.0f, 398.0f, 711.0f }) {
+    void OnEntityDamageTaken(DamageTakenData data) override
+    {
+        SetHP(data.entity->GetHP(), data.entity->GetMaxHP());
+    }
+    
+    void Init(const D2D1_RECT_F& rect = { 0.0f, 610.0f, 398.0f, 711.0f }) override
+    {
         SetRect(rect);
         UIResourceSubManager::Preload_StatusToolbar();
 
@@ -76,6 +83,7 @@ private:
     }
 
     void AddLevelText() {
+
         UIButtonStyle style = {
             { D2DImageManager::GetInstance()->FindImage("status_level") },
             { L"pixel", 16.0f, D2D1::ColorF(D2D1::ColorF::White), true,

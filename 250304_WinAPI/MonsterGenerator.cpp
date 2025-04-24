@@ -72,7 +72,7 @@ std::vector<Monster*> MonsterGenerator::GenerateMonsters(Level* level, const std
 // 몬스터 생성 함수
 Monster* MonsterGenerator::CreateMonster(MonsterType type, FPOINT position, float speed) {
     // 몬스터 생성
-    Monster* monster = new Monster(position, 300.f, 15, 4, 3);
+    Monster* monster = new Monster(position, 1000.f, 15, 4, 3);
     
     // 몬스터 유형에 따른 추가 설정 (향후 확장)
     // 현재는 기본 Monster 클래스만 사용

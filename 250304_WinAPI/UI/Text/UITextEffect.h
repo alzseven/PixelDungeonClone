@@ -45,14 +45,14 @@ public:
         text->SetStyle(s);
 
         // 기준 위치 + offset 계산
-        float offset = effectStyle.moveSpeed * t;
+        float offset = effectStyle.moveSpeed * elapsed;
         D2D1_RECT_F newRect = {
-            0.0f,
-            offset,
-            localRect.right,
-            localRect.bottom + offset
+            GetWorldRect().left,
+            GetWorldRect().top + offset,
+            GetWorldRect().right,
+            GetWorldRect().bottom + offset
         };
-        text->SetLocalRect(newRect);  // ✅ local 기준으로 위치 세팅
+        text->SetWorldRect(newRect);
     }
 
     void Render(ID2D1HwndRenderTarget* rt) override {

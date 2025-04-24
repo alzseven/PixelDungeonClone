@@ -7,8 +7,11 @@
 #include "D2DImageManager.h"
 #include "../../Observer/IEntityObserver.h"
 
-class UIStatusPanel : public UIContainerBase, public IEntityObserver {
+class UIItemPanel : public UIContainerBase, public IEntityObserver {
 private:
+    UIImageTextButton* itemIcon = nullptr;
+    UIImageTextButton* itemName = nullptr;
+    
     UIText* titleText = nullptr;
     UIImageTextButton* characterIcon = nullptr;
     UIText* infoTexts[6] = {};
@@ -17,10 +20,10 @@ private:
 
 public:
     void Init(const D2D1_RECT_F& rect);
-    void SetStatData(const PlayerStatData& data);
+    void SetItemData(const PlayerStatData& data);
 };
 
-inline void UIStatusPanel::Init(const D2D1_RECT_F& rect = { 400, 0, 650, 180 }) {
+inline void UIItemPanel::Init(const D2D1_RECT_F& rect = { 400, 0, 650, 180 }) {
     SetRect(rect);
 
     NinePatchStyle bgNineStyle;
@@ -67,7 +70,7 @@ inline void UIStatusPanel::Init(const D2D1_RECT_F& rect = { 400, 0, 650, 180 }) 
     }
 }
 
-inline void UIStatusPanel::SetStatData(const PlayerStatData& data) {
+inline void UIItemPanel::SetStatData(const PlayerStatData& data) {
     if (titleText) titleText->SetText(data.title);
 
     if (infoTexts[0]) infoTexts[0]->SetText(L"힘 " + std::to_wstring(data.strength));

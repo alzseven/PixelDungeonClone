@@ -148,7 +148,6 @@ public:
 		ID2D1SolidColorBrush* debugBrush = nullptr;
 		rt->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Red), &debugBrush);
 		rt->DrawRectangle(rect, debugBrush, 1.0f);  // 1.0f: 선 두께
-
 		if (debugBrush)
 			debugBrush->Release();
 	}

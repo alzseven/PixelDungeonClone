@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <array>
 #include <string>
-#include "../../D2DImage.h"
+#include "../D2DImage.h"
 
 struct D2DFrameImage;
 
@@ -11,6 +11,8 @@ struct ImageStyle {
     float alpha = 1.0f;
     D2D1_COLOR_F tint = D2D1::ColorF(1, 1, 1, 1); // 색상 효과
     bool grayscale = false; // 비활성화 상태 표현
+    int frameIdx;
+    int frameIdy;
 };
 
 struct BarStyle {
@@ -22,15 +24,19 @@ struct BarStyle {
 struct TextStyle {
     std::wstring fontName = L"맑은 고딕";
     float fontSize = 16.0f;
-    D2D1_COLOR_F color = D2D1::ColorF(0, 0, 0, 1); // 기본 검정
+    D2D1_COLOR_F color = D2D1::ColorF(1, 1, 1, 1); // 기본 하양
     bool bold = false;
     DWRITE_TEXT_ALIGNMENT horizontalAlign = DWRITE_TEXT_ALIGNMENT_LEADING;
     DWRITE_PARAGRAPH_ALIGNMENT verticalAlign = DWRITE_PARAGRAPH_ALIGNMENT_NEAR;
+
+    TextStyle() = default;
 };
 
 struct EffectStyle {
-    float lifetime = 1.0f;
-    float moveSpeed = -3.0f;
+    float lifetime = 2.0f;
+    float moveSpeed = -20.0f;
+
+    EffectStyle() = default;
 };
 
 struct UIIconStyle {

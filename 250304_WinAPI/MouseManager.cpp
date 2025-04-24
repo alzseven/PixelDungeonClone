@@ -3,10 +3,7 @@
 // 전역 윈도우 핸들 필요 시 외부에서 정의
 extern HWND g_hWnd;
 
-template<typename T>
-T Clamp(T val, T minVal, T maxVal) {
-    return (val < minVal) ? minVal : ((val > maxVal) ? maxVal : val);
-}
+
 
 HRESULT MouseManager::Init()
 {

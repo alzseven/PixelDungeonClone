@@ -4,7 +4,6 @@
     <ClCompile Include="Button.cpp">
       <Filter>2D Framework\UI\Button</Filter>
     </ClCompile>
-    <ClCompile Include="CombatSyetem.cpp" />
     <ClCompile Include="Entity.cpp">
       <Filter>MainGame\GamePlay\Entity</Filter>
     </ClCompile>
@@ -49,7 +48,6 @@
       <Filter>MainGame\GamePlay</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="PathFinder.cpp" />
     <ClCompile Include="Consumable.cpp">
       <Filter>Item</Filter>
     </ClCompile>
@@ -59,7 +57,6 @@
     <ClCompile Include="Item.cpp">
       <Filter>Item</Filter>
     </ClCompile>
-    <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="FieldOfView.cpp">
       <Filter>2D Framework</Filter>
     </ClCompile>
@@ -93,12 +90,35 @@
     <ClCompile Include="UI\Util\UIResourceSubManager.cpp">
       <Filter>2D Framework\UI\Util</Filter>
     </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="PathFinder.cpp">
+      <Filter>MainGame\GamePlay</Filter>
+    </ClCompile>
+    <ClCompile Include="CombatSyetem.cpp">
+      <Filter>MainGame\GamePlay</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Sword.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer\EntityObserverHub.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\UIEffectManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h">
       <Filter>2D Framework\UI\Button</Filter>
     </ClInclude>
-    <ClInclude Include="CombatSyetem.h" />
     <ClInclude Include="CommonFunction.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -149,7 +169,6 @@
       <Filter>MainGame\GamePlay</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="PathFinder.h" />
     <ClInclude Include="Consumable.h">
       <Filter>Item</Filter>
     </ClInclude>
@@ -159,7 +178,6 @@
     <ClInclude Include="Item.h">
       <Filter>Item</Filter>
     </ClInclude>
-    <ClInclude Include="Inventory.h" />
     <ClInclude Include="FieldOfView.h">
       <Filter>2D Framework</Filter>
     </ClInclude>
@@ -276,6 +294,42 @@
     </ClInclude>
     <ClInclude Include="UI\Text\UITextEffect.h">
       <Filter>2D Framework\UI\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFinder.h">
+      <Filter>MainGame\GamePlay</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatSyetem.h">
+      <Filter>MainGame\GamePlay</Filter>
+    </ClInclude>
+    <ClInclude Include="Equipment.h">
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Sword.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer\IEntityObserver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer\EntityObserverHub.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer\ObserverEventData.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Panel\UIItemPanel.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UIEffectManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Button\UIImageTextButton.h">
+      <Filter>2D Framework\UI\Button</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

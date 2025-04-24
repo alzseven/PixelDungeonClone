@@ -12,7 +12,10 @@ protected:
     float fillPercent = 1.0f;
 
 public:
-    void Init(const D2D1_RECT_F& layout, const BarStyle& style, float max);
+    void Init(const D2D1_RECT_F& layout = {0,0,0,0},
+        const BarStyle& s = {{nullptr},{nullptr},{nullptr}},
+        float max = 100.0f);
+    void SetStyle(const BarStyle& style);
     void SetValue(float value);
     void SetMaxValue(float max);
 
@@ -22,9 +25,16 @@ public:
 
 inline void UIValueBar::Init(const D2D1_RECT_F& layout, const BarStyle& s, float max) {
     SetRect(layout);
+    SetStyle(s);
+    SetMaxValue(max);
     style = s;
     maxValue = max;
     animator.SetInstant(max);
+}
+
+inline void UIValueBar::SetStyle(const BarStyle& style)
+{
+    this->style = style;
 }
 
 inline void UIValueBar::SetValue(float value) {

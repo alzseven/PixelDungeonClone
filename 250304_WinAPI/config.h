@@ -228,3 +228,8 @@ struct RGBA {
     float b;
     float a;
 };
+
+template<typename T>
+T Clamp(T val, T minVal, T maxVal) {
+	return (val < minVal) ? minVal : ((val > maxVal) ? maxVal : val);
+}

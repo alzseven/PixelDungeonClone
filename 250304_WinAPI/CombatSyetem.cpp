@@ -1,4 +1,4 @@
-#include "CombatSyetem.h"
+﻿#include "CombatSyetem.h"
 #include "Entity.h"
 
 int CombatSyetem::CalculateDmg(Entity* attacker, Entity* defender)
@@ -13,4 +13,6 @@ void CombatSyetem::ProcessAttack(Entity* attacker, Entity* defender)
 
 	int dmg = CalculateDmg(attacker, defender);
 	defender->TakeDamage(dmg);
+	if (defender->GetType() == EntityType::MONSTER && !defender->IsAlive())
+		attacker->TakeExp(defender->GetExp());
 }

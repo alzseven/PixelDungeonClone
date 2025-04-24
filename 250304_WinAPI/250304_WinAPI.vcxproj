@@ -137,6 +137,7 @@
     <ClCompile Include="DungeonGenerator.cpp" />
     <ClCompile Include="DWriteFactory.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Equipment.cpp" />
     <ClCompile Include="FieldOfView.cpp" />
     <ClCompile Include="EnvironmentalEffectsManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -155,9 +156,11 @@
     <ClCompile Include="MonsterGenerator.cpp" />
     <ClCompile Include="MouseManager.cpp" />
     <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="Observer\EntityObserverHub.cpp" />
     <ClCompile Include="PathFinder.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Sword.cpp" />
     <ClCompile Include="TilemapTool.cpp" />
     <ClCompile Include="Tiles.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -166,6 +169,8 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TimerManager.cpp" />
     <ClCompile Include="TurnManager.cpp" />
+    <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="UI\UIEffectManager.cpp" />
     <ClCompile Include="UI\Util\UIHelper.cpp" />
     <ClCompile Include="UI\Util\UIResourceSubManager.cpp" />
   </ItemGroup>
@@ -183,9 +188,11 @@
     <ClInclude Include="DungeonGenerator.h" />
     <ClInclude Include="DWriteFactory.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Equipment.h" />
     <ClInclude Include="FieldOfView.h" />
     <ClInclude Include="EnvironmentalEffectsManager.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameOver.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="HealPotion.h" />
     <ClInclude Include="Inventory.h" />
@@ -200,11 +207,15 @@
     <ClInclude Include="MonsterGenerator.h" />
     <ClInclude Include="MouseManager.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="Observer\IEntityObserver.h" />
+    <ClInclude Include="Observer\EntityObserverHub.h" />
+    <ClInclude Include="Observer\ObserverEventData.h" />
     <ClInclude Include="PathFinder.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="resource4.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Sword.h" />
     <ClInclude Include="TilemapTool.h" />
     <ClInclude Include="Tiles.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -213,8 +224,10 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TimerManager.h" />
     <ClInclude Include="TurnManager.h" />
+    <ClInclude Include="UIManager.h" />
     <ClInclude Include="UI\Bar\UIValueBar.h" />
     <ClInclude Include="UI\Bar\ValueAnimator.h" />
+    <ClInclude Include="UI\Button\UIImageTextButton.h" />
     <ClInclude Include="UI\Core\UIComponent.h" />
     <ClInclude Include="UI\Core\UIContainer.h" />
     <ClInclude Include="UI\Core\UIContainerBase.h" />
@@ -223,6 +236,7 @@
     <ClInclude Include="UI\Image\UIBaseImage.h" />
     <ClInclude Include="UI\Image\UIImage.h" />
     <ClInclude Include="UI\Panel\UIInventory.h" />
+    <ClInclude Include="UI\Panel\UIItemPanel.h" />
     <ClInclude Include="UI\Panel\UIQuickSlotToolbar.h" />
     <ClInclude Include="UI\Panel\UIStatusPanel.h" />
     <ClInclude Include="UI\Panel\UIStatusTollbar.h" />
@@ -235,6 +249,7 @@
     <ClInclude Include="UI\Text\UITextBox.h" />
     <ClInclude Include="UI\Text\UITextEffect.h" />
     <ClInclude Include="UI\UIData.h" />
+    <ClInclude Include="UI\UIEffectManager.h" />
     <ClInclude Include="UI\Util\IUIInteractable.h" />
     <ClInclude Include="UI\Util\StyleUtil.h" />
     <ClInclude Include="UI\Util\UIHelper.h" />

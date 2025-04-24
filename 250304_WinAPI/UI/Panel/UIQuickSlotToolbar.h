@@ -2,8 +2,9 @@
 #include "../Core/UIContainer.h"
 #include "../BUtton/UIImageTextButton.h"
 #include "../Util/UIResourceSubManager.h"
+#include "../../Observer/IEntityObserver.h"
 
-class UIQuickSlotToolbar : public UIContainer {
+class UIQuickSlotToolbar : public UIContainer, public IEntityObserver {
 private:
     std::vector<UIImageTextButton*> itemSlots;
     std::vector<UIImageTextButton*> actionButtons;

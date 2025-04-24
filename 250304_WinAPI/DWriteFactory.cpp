@@ -63,3 +63,15 @@ bool DWriteFactory::CreateTextFormat(
 
     return true;
 }
+
+void DWriteFactory::CreateTextLayout(const std::wstring& text, IDWriteTextFormat* format, float width,
+    float height, IDWriteTextLayout** layout)
+{
+    factory->CreateTextLayout(
+        text.c_str(),
+        static_cast<UINT32>(text.length()),
+        format,
+        width,
+        height,
+        layout);
+}

@@ -5,13 +5,13 @@
 class HealPotion : public Consumable
 {
 private:
-	int healAmount;
+	int healAmount = 1;
 
 public:
-	HealPotion();
+	HealPotion(FPOINT position);
 	virtual ~HealPotion();
 
 	void Use(Entity* user) override;
-
+	void Render(HDC hdc) override;
 };
 

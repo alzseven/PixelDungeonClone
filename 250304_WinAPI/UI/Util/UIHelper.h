@@ -42,8 +42,9 @@ namespace UIHelper {
     void SetButtonImage(const UIImageTextButton& btn, const NinePatchStyle& style, size_t index = 0);
     /* 인벤 전용 */
     void SetInventorySlotData(const UIImageTextButton& target, const UIInventorySlotData* data);
-    void UpdateInventorySlot(UIImageTextButton& slot, const UIInventorySlotStyle& style,
+    void UpdateInventorySlot(UIImageTextButton& slot,
                              const UIInventorySlotData& data, const std::function<void()>& onClick = nullptr);
+    
 
     /* 공통 템플릿 및 수학용 */
     float Clamp(float value, float minVal, float maxVal);
