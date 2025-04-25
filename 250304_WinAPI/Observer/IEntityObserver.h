@@ -21,6 +21,8 @@ public:
 class ISystemObserver
 {
 public:
+    virtual ~ISystemObserver() = default;
+    virtual void OnRelaseEntity(Entity* entity) {}
     virtual void OnEndGame() {};
 
 };

@@ -16,7 +16,7 @@ public:
     ~IntegratedDungeonSystem() = default;
 
     // Generate a complete dungeon with monsters
-    void GenerateDungeon(bool isProcedural, Level* level, int width, int height, int roomCount, int minRoomSize, int maxRoomSize, WCHAR* filepath = nullptr);
+    void GenerateDungeon(bool isProcedural, Level* level, int width, int height, int roomCount, int minRoomSize, int maxRoomSize, WCHAR* filepath = nullptr, int floorLevel = 2);
     IDungeonGenerator* GetDungeonGenerator() const {return dungeonGenerator;}
 
     wstring GetFileNameFromWCHAR(const WCHAR* fullPath);

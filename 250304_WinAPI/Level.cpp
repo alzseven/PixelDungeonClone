@@ -23,8 +23,10 @@
 #include "TileMapping8x8.h"
 
 
-void Level::Init()
+void Level::Init(Player* player, int floor, bool isProcedural)
 {
+    this->player = player;
+    levelFloor = floor;
     turnManager = new TurnManager();
 
     sampleTile = D2DImageManager::GetInstance()->AddImage(
@@ -74,21 +76,44 @@ void Level::Init()
 
 
     // Generate dungeon
-    dungeonSystem.GenerateDungeon(true, this, mapWidth, mapHeight, 10, 8, 12);
+    dungeonSystem.GenerateDungeon(true, this, mapWidth, mapHeight, 10, 8, 12, nullptr, floor);
+
+    ascInd = dungeonSystem.GetDungeonGenerator()->GetAscInd();
+    int ascY = ascInd / TILE_X;
+    int ascX = ascInd % TILE_X;
+    ascCenter = GetPosByGridIndex(ascX, ascY);
+    descInd = dungeonSystem.GetDungeonGenerator()->GetDescInd();
+    int descY = descInd / TILE_X;
+    int descX = descInd % TILE_X;
+    descCenter = GetPosByGridIndex(descX, descY);
+
+    //player->SetStairs(ascCenter, descCenter);
+    /*ascRc = {
+        static_cast<long>(ascCenter.x) - TILE_SIZE / 2,
+        static_cast<long>(ascCenter.y) - TILE_SIZE / 2,
+        static_cast<long>(ascCenter.x) + TILE_SIZE / 2,
+        static_cast<long>(ascCenter.y) + TILE_SIZE / 2,
+
+    };
+    descRc = {
+        static_cast<long>(descCenter.x) - TILE_SIZE / 2,
+        static_cast<long>(descCenter.y) - TILE_SIZE / 2,
+        static_cast<long>(descCenter.x) + TILE_SIZE / 2,
+        static_cast<long>(descCenter.y) + TILE_SIZE / 2,
+
+    };*/
 
     // Place player near entrance
-    FPOINT playerPos = GetEntranceSpawnPosition();
-    player = new Player(playerPos, 1000.f, 20, 50, 2);
+    playerInitP = GetEntranceSpawnPosition();
+    //player->SetPosition(playerPos);
     AddActor(player);
     
     camera = new Camera();
-    camera->Init(player->GetPosition());
+    camera->Init(playerInitP);
 
     // UI
     uiManager = UIManager::GetInstance();
-    uiManager->Init();
     uiManager->RegisterCamera(camera);
-    uiManager->RegisterPlayer(player);
     //
     
     for (auto actor : actors)
@@ -103,8 +128,8 @@ void Level::Init()
 
 
     // Item
-    Item* potion1 = new HealPotion(playerPos + FPOINT{ TILE_SIZE , TILE_SIZE });
-    Item* potion2 = new HealPotion(playerPos + FPOINT{ TILE_SIZE , 0 });
+    Item* potion1 = new HealPotion(playerInitP + FPOINT{ TILE_SIZE , TILE_SIZE });
+    Item* potion2 = new HealPotion(playerInitP + FPOINT{ TILE_SIZE , 0 });
     AddItem(potion1);
     AddItem(potion2);
 
@@ -114,6 +139,11 @@ void Level::Init()
 
 void Level::Release()
 {
+    /*if (uiManager)
+    {
+        uiManager->DeleteLevelUI();
+        uiManager = nullptr;
+    }*/
     
 	for (auto& actor : actors)
 	{
@@ -128,7 +158,7 @@ void Level::Release()
     {
         //delete player;
         player = nullptr;
-        uiManager->SetCurrentPlayer(nullptr);
+        //uiManager->SetCurrentPlayer(nullptr);
     }
 
     // Items
@@ -140,8 +170,6 @@ void Level::Release()
             item = nullptr;
         }
     }
-    
-    uiManager = nullptr;
 
     if (camera) {
         camera = nullptr;
@@ -153,9 +181,16 @@ void Level::Update()
 {
     uiManager->Update();
 
-    if (KeyManager::GetInstance()->IsOnceKeyDown(VK_SPACE)) {
-        player->TakeDamage(30);
+    /*if (KeyManager::GetInstance()->IsOnceKeyDown('W')) {
+        Ascending();
     }
+    if (KeyManager::GetInstance()->IsOnceKeyDown('S')) {
+        Descending();
+    }*/
+
+    /*if (KeyManager::GetInstance()->IsOnceKeyDown(VK_SPACE)) {
+        player->TakeDamage(30);
+    }*/
     
     if (player) {
         if (player->GetState() == EntityState::MOVE) {
@@ -216,6 +251,7 @@ void Level::Update()
 
                 if (map[indY * TILE_X + indX].CanGo() && map[indY * TILE_X + indX].explored)
                     player->SetNextPos(GetPosByGridIndex(indX, indY));
+                    //player->SetJustMoved(false);
             } ///
 
             MouseManager::GetInstance()->InitPoints();
@@ -223,6 +259,7 @@ void Level::Update()
         }
     } ///디버깅을 위해 마우스 왼쪽 버튼을 떼면 그 자리에 있는 타일이 빨간색으로 변하게 해놨습니다. 
 	  ///맵으로 사용하실 땐 타일 선택 로직(이동 및 공격)을 써주세요!
+
 
     SetVisibleTile();
     
@@ -350,7 +387,7 @@ void Level::Render(HDC hdc)
     // Render actors
     for (auto actor : actors)
     {
-		if (map[GetMapIndex(actor->GetPosition().x, actor->GetPosition().y)].visible)
+		//if (map[GetMapIndex(actor->GetPosition().x, actor->GetPosition().y)].visible)
 		{
 		    // if (shadowImage)
 		    // {
@@ -399,6 +436,7 @@ Level::Level()
 
 Level::~Level()
 {
+    Release();
 }
 
 FPOINT Level::GetPlayerPos()
@@ -848,7 +886,6 @@ void Level::Render8x8Tiles(HDC hdc)
         }
     }
 }
-
 // unsigned char CalculateBitmask(const std::vector<std::vector<int>>& map, int x, int y) {
 //     // 8방향 오프셋 (시계 방향으로 좌상, 상, 우상, 우, 우하, 하, 좌하, 좌)
 //     const int dx[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
@@ -876,7 +913,7 @@ void Level::Render8x8Tiles(HDC hdc)
 //     return bitmask;
 // }
 
-void TestLevel::Init()
+void TestLevel::Init(Player* player, int floor, bool isProcedural)
 {
     turnManager = new TurnManager();
 

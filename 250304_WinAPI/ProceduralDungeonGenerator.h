@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "IDungeonGenerator.h"
 #include <vector>
 #include <random>
@@ -59,4 +59,6 @@ private:
     // 유틸리티 메서드들
     int GetRandomInt(int min, int max);
     bool GetRandomBool(float probability);
+
+
 }; 

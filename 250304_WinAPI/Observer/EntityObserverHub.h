@@ -1,12 +1,16 @@
 ﻿#pragma  once
 #include <vector>
 
-#include "ObserverEventData.h"
+namespace D2D1
+{
+    class ColorF;
+}
 
 class Entity;
 struct EffectStyle;
 struct TextStyle;
 class IEntityObserver;
+class ISystemObserver;
 class Player;
 
 
@@ -14,6 +18,7 @@ class Player;
 class EntityObserverHub {
 private:
     std::vector<IEntityObserver*> observers;
+    std::vector<ISystemObserver*> systemObservers;
 
 public:
     void AddObserver(IEntityObserver* obs);
@@ -21,4 +26,6 @@ public:
     void NotifyDamageTaken(Entity* e, int dmg, D2D1::ColorF color);
     void NotifyDeath(Entity* e);
     void NotifyChangePlayerInven(Player* p);
+    
+    void NotifySystemRelese(Entity* e);
 };

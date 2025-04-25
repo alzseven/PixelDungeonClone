@@ -44,7 +44,7 @@
 //     return monsterGenerator.GenerateMonsters(level, currentMapData, floorLevel);
 // }
 void IntegratedDungeonSystem::GenerateDungeon(bool isProcedural, Level* level, int width, int height, int roomCount, int minRoomSize,
-    int maxRoomSize, WCHAR* filepath)
+    int maxRoomSize, WCHAR* filepath, int floorLevel)
 {
     if (isProcedural == true) {
         dungeonGenerator = new ProceduralDungeonGenerator();
@@ -70,7 +70,7 @@ void IntegratedDungeonSystem::GenerateDungeon(bool isProcedural, Level* level, i
     level->SetRenderMap(renderMap);
     
     // Generate monsters based on the dungeon layout
-    std::vector<Monster*> monsters = monsterGenerator.GenerateMonsters(level, map, 2); // Generate 10 monsters
+    std::vector<Monster*> monsters = monsterGenerator.GenerateMonsters(level, map, floorLevel); // Generate 10 monsters
         
     // Add the monsters to the level
     level->AddMonsters(monsters);

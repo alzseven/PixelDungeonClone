@@ -16,6 +16,7 @@ Entity::Entity()
 
 Entity::~Entity()
 {
+	entityObserver.NotifySystemRelese(this);
 }
 
 void Entity::Update()

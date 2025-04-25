@@ -1,4 +1,6 @@
 ﻿#pragma once
+#include <unordered_set>
+
 #include "Camera.h"
 #include "config.h"
 #include "Singleton.h"
@@ -31,12 +33,15 @@ private:
 	ID2D1HwndRenderTarget* rdt; // 절대 삭제 금지
 	MouseManager* mouseManager;  // 절대 삭제 금지
 	Camera* camera; // 절대 삭제 금지
+	
 	UIResourceSubManager* uiResourceManager;
 	UIMopHPManager* uiMopHPManager;
-
+	UIEffectManager* uiEffectManager;
 
 	Player* currentPlayer;
-	// vector<IPlayerObserver>
+
+	unordered_set<Entity*> observerOwnerEntities;
+	
 	D2D1::ColorF colors[5] = {
 		D2D1::ColorF::White,
 		D2D1::ColorF::Red,
@@ -46,7 +51,6 @@ private:
 	};
 
 	vector<UIContainerBase*> uiContainers;
-	UIEffectManager* uiEffectManager;
 	UITextLogPanel* uiTextLogPanel;
 	UIStatusToolbar* uiStatusToolbar;
 	UIQuickSlotToolbar* uiQuickSlotToolbar;
@@ -94,7 +98,10 @@ public:
 
 	UIGameOver* GetUiGameOver() { return uiGameOver; }
 
-	void ClearUiContainers();
+	void DeleteLevelUI();
+	void OnRelaseEntity(Entity* entity) override;
+
+	void Reset();
 
 	void Init();
 	void Update();
@@ -104,4 +111,9 @@ public:
 protected:
 	bool CheckZoomChange();
 };
+
+inline void UIManager::Reset()
+{
+	DeleteLevelUI();
+}
 

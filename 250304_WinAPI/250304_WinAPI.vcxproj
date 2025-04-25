@@ -186,7 +186,9 @@
     <ClCompile Include="TimerManager.cpp" />
     <ClCompile Include="TurnManager.cpp" />
     <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="UI\Bar\UIMopBar.cpp" />
     <ClCompile Include="UI\UIEffectManager.cpp" />
+    <ClCompile Include="UI\UIMopHPManager.cpp" />
     <ClCompile Include="UI\Util\UIHelper.cpp" />
     <ClCompile Include="UI\Util\UIResourceSubManager.cpp" />
     <ClCompile Include="Weapon.cpp" />

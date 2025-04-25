@@ -14,7 +14,7 @@ private:
 public:
     ~UITextLogPanel() override
     {
-        Clear();
+        DeleteAll();
     }
 
     void Init(const D2D1_RECT_F& area = { 20, 400, 375, 400 + 200 }, int maxLine = 6, float lineHeight = 20.0f, float spacing = 2.0f) {
@@ -59,10 +59,9 @@ public:
 
     }
 
-    void Clear() {
+    void DeleteAll() {
         for (auto* c : GetChildren()) {
             RemoveChild(c);
-            pool.Recycle(dynamic_cast<UIText*>(c));
         }
     }
 };

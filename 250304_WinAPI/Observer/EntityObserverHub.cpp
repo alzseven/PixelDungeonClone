@@ -6,6 +6,7 @@
 
 
 void EntityObserverHub::AddObserver(IEntityObserver* obs) {
+    if (obs == nullptr) return;
     observers.push_back(obs);
 }
 
@@ -32,11 +33,23 @@ void EntityObserverHub::NotifyDamageTaken(Entity* e, int dmg, D2D1::ColorF color
     }
 }
 
-void EntityObserverHub::NotifyDeath(Entity* e) {
-    for (auto* obs : observers) obs->OnEntityDied(e);
+void EntityObserverHub::NotifyDeath(Entity* e)
+{
+    for (auto obsit = observers.begin(); obsit != observers.end(); ++obsit)
+    {
+        (*obsit)->OnEntityDied(e);
+    }
 }
 
 void EntityObserverHub::NotifyChangePlayerInven(Player* p)
 {
-    for (auto* obs : observers) obs->OnChangePlayerInven(p);
+    for (auto obsit = observers.begin(); obsit != observers.end(); ++obsit)
+    {
+        (*obsit)->OnChangePlayerInven(p);
+    }
+}
+
+void EntityObserverHub::NotifySystemRelese(Entity* e)
+{
+    for (auto* obs : systemObservers) obs->OnRelaseEntity(e);
 }
