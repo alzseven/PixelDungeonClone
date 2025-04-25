@@ -4,6 +4,7 @@
 
 class D2DImage;
 class Button;
+class ExitButton;
 class TilemapTool : public GameObject
 {
 private:
@@ -16,6 +17,8 @@ private:
 	//int nowZoomScale;
 
 	Map tileInfo[TILE_X * TILE_Y];
+
+	ExitButton* GoLobbyButton;
 
 	const int gridSize{ 16 };
 	D2D1_COLOR_F gridColor;
@@ -65,6 +68,7 @@ public:
 
 	void Erase();
 	void Paint();
+	void Exit();
 
 	void MakeARoom();
 
