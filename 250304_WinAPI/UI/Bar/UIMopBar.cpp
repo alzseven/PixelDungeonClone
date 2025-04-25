@@ -43,6 +43,14 @@ void UIMopBar::OnEntityDamageTaken(DamageTakenData data)
         SetActive(true);
         UIManager::GetInstance()->SendLog(L"Attach Target : " + to_wstring(bar->GetFillPercent()), D2D1::ColorF(D2D1::ColorF::ColorF::Green));
     }
+    /*if (curHP <= 0) {
+        SetActive(false);
+    }*/
+}
+
+void UIMopBar::OnEntityDied(Entity* entity)
+{
+    SetActive(false);
 }
 
 void UIMopBar::Init(const D2D1_RECT_F& layout, const ImageStyle& bgs,

@@ -248,6 +248,7 @@ void UIManager::Init()
     uiContainers.push_back(uiTopRightUI);
     uiContainers.push_back(uiStatusPanel);
     uiContainers.push_back(uiInventoryPanel);
+    uiContainers.push_back(uiGameOver);
     
 }
 
@@ -300,10 +301,10 @@ void UIManager::Update()
     {
         uiEffectManager->Update(dt);
     }
-    if (uiGameOver)
+    /*if (uiGameOver)
     {
         uiGameOver->Update(dt);
-    }
+    }*/
     ///////
 
 
@@ -366,15 +367,15 @@ void UIManager::Render()
     {
         uiEffectManager->Render(rdt);
     }
-    if (uiGameOver)
+    /*if (uiGameOver)
     {
         uiGameOver->Render(rdt);
-    }
+    }*/
 }
 
 void UIManager::Release()
 {
-    uiGameOver->SetActive(false);
+    //uiGameOver->SetActive(false);
     DeleteLevelUI();
     
     /* 절대 삭제 금지 */

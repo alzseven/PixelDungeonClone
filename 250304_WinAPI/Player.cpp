@@ -74,6 +74,31 @@ Player::~Player()
 {
 }
 
+void Player::SetStairs(const FPOINT& ascPos, const FPOINT& descPos)
+{
+    nowAscPos = ascPos;
+    nowDescPos = descPos;
+}
+
+void Player::Update()
+{
+    Super::Update();
+    switch (curState)
+    {
+    case EntityState::IDLE:
+        return;
+    case EntityState::MOVE:
+        return;
+    case EntityState::ATTACK:
+        //if (curAnimFrame == endFrame)
+        //    curState = EntityState::DUMMY;
+        return;
+    case EntityState::DEAD:
+        // player는 죽은채로 계속 애니메이션 돼야함
+        return;
+    }
+}
+
 void Player::Render(HDC hdc)
 {
     if (image)
@@ -88,6 +113,9 @@ void Player::Act(Level* level)
         ActIdle(level);
         return;
     case EntityState::MOVE:
+        if (justMoved == true) {
+            justMoved = false;
+        }
         Move(level);
         return;
     case EntityState::ATTACK:
@@ -123,7 +151,17 @@ void Player::ActIdle(Level* level)
         }
     }
 
-    if (position == destPos) return;
+    if (position == destPos) { 
+        if (destPos == nowAscPos && justMoved == false) {
+            //목적지가 올라가는 계단이면 올라가는 함수 실행
+            Ascending();
+        }
+        else if (destPos == nowDescPos && justMoved == false) {
+            //목적지가 내려가는 계단이면 내려가는 함수 실행
+            Descending();
+        }
+        return; 
+    }
     if (finder->FindPath(position, destPos, level, OUT path))
         targetPos = path[1];
 
@@ -156,6 +194,12 @@ void Player::GetItem(Item* item)
         // // 아이템 획득 사운드
         // FModSoundPlayer::GetInstance()->Play("item", 0.3f);
     }
+}
+
+void Player::SetFunctions(function<void()> asc, function<void()> desc)
+{
+    Ascending = asc;
+    Descending = desc;
 }
 
 void Player::Heal(int healAmount)

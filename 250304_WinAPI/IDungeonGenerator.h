@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <vector>
 
 #include "WallTileRenderer.h"
@@ -9,6 +9,8 @@ class IDungeonGenerator {
 protected:
     // 벽 타일 렌더러
     WallTileRenderer wallTileRenderer;
+    int ascInd{ 0 };
+    int descInd{ 0 };
 public:
     virtual ~IDungeonGenerator() = default;
 
@@ -20,6 +22,9 @@ public:
     
     virtual void RenderWallTile(D2DImage* image, int x, int y, int tileX, int tileY, float scale, const std::vector<std::vector<int>>& map) = 0;
     
+    virtual int GetAscInd() { return ascInd; }
+    virtual int GetDescInd() { return descInd; }
+
     // 타일 상수
     static constexpr int TILE_NONE = 6;
     static constexpr int TILE_WALL = 0;

@@ -22,6 +22,7 @@ public:
     ~UIMopBar() override;
     
     void OnEntityDamageTaken(DamageTakenData data) override;
+    void OnEntityDied(Entity* entity) override;
     
     void Init(const D2D1_RECT_F& layout = {0,0,49,8},
         const ImageStyle& bs = {nullptr},

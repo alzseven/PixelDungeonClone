@@ -1,4 +1,4 @@
-#include "FileLoadDungeonGenerator.h"
+﻿#include "FileLoadDungeonGenerator.h"
 #include <fstream>
 #include <sstream>
 #include <algorithm>
@@ -258,6 +258,7 @@ void FileLoadDungeonGenerator::PlaceSpecialRooms(std::vector<std::vector<int>>& 
         int entranceIdx = rand() % possibleEntrancePositions.size();
         auto pos = possibleEntrancePositions[entranceIdx];
         map[pos.second][pos.first] = TILE_ENTRANCE;
+        ascInd = pos.second * TILE_X + pos.first;
     }
     
     // 출구 배치
@@ -265,6 +266,7 @@ void FileLoadDungeonGenerator::PlaceSpecialRooms(std::vector<std::vector<int>>& 
         int exitIdx = rand() % possibleExitPositions.size();
         auto pos = possibleExitPositions[exitIdx];
         map[pos.second][pos.first] = TILE_EXIT;
+        descInd = pos.second * TILE_X + pos.first;
     }
 }
 

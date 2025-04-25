@@ -1,4 +1,4 @@
-#define NOMINMAX
+﻿#define NOMINMAX
 #include "ProceduralDungeonGenerator.h"
 #include <algorithm>
 #include <ctime>
@@ -487,11 +487,13 @@ void ProceduralDungeonGenerator::PlaceSpecialRooms(std::vector<std::vector<int>>
     int entranceX = roomNodes[entranceIdx].room.centerX();
     int entranceY = roomNodes[entranceIdx].room.centerY();
     map[entranceY][entranceX] = TILE_ENTRANCE;
+    ascInd = entranceY * TILE_X + entranceX;
     
     // 출구 배치
     int exitX = roomNodes[exitIdx].room.centerX();
     int exitY = roomNodes[exitIdx].room.centerY();
     map[exitY][exitX] = TILE_EXIT;
+    descInd = exitY * TILE_X + exitX;
 }
 
 void ProceduralDungeonGenerator::CleanupWalls(std::vector<std::vector<int>>& map) {
